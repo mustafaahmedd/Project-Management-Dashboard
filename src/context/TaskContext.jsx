@@ -64,6 +64,8 @@ export function TaskProvider({ children }) {
       estimatedHours: 0,
       loggedHours: 0,
       subtasks: [],
+      description: '',
+      tags: [],
       ...data,
     };
     dispatch({ type: ACTION.ADD, payload: task });

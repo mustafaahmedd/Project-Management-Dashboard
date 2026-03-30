@@ -10,6 +10,7 @@ import {
   ListItemIcon,
   ListItemText,
   Tooltip,
+  InputAdornment,
 } from '@mui/material';
 import {
   Add,
@@ -20,12 +21,14 @@ import {
   ArrowForward,
   ArrowBack,
   AccessTime,
+  Search,
 } from '@mui/icons-material';
 import PageHeader from '../components/common/PageHeader';
 import FormDialog from '../components/common/FormDialog';
 import ConfirmDialog from '../components/common/ConfirmDialog';
 import { useTasks } from '../context/TaskContext';
 import { useProjects } from '../context/ProjectContext';
+import { useUser } from '../context/UserContext';
 import { PRIORITY_COLOR, relativeDate } from '../utils/format';
 
 const COLUMNS = [
@@ -54,11 +57,13 @@ const EMPTY_FORM = {
   status: 'todo',
   deadline: '',
   estimatedHours: '',
+  description: '',
 };
 
 export default function TasksPage() {
   const { tasks, addTask, updateTask, deleteTask, moveTask } = useTasks();
   const { projects } = useProjects();
+  const { roles } = useUser();
 
   const [formOpen, setFormOpen] = useState(false);
   const [editId, setEditId] = useState(null);
@@ -68,11 +73,45 @@ export default function TasksPage() {
   const [menuTaskId, setMenuTaskId] = useState(null);
   const [filterProject, setFilterProject] = useState('all');
   const [showFilter, setShowFilter] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Group projects by company for the dropdown
+  const projectsByCompany = useMemo(() => {
+    const roleMap = {};
+    roles.forEach((r) => { roleMap[r.id] = r; });
+    const groups = {};
+    projects.forEach((p) => {
+      const role = p.roleId ? roleMap[p.roleId] : null;
+      const company = role ? role.company : 'Unassigned';
+      if (!groups[company]) groups[company] = [];
+      groups[company].push(p);
+    });
+    return Object.entries(groups).sort(([a], [b]) => {
+      if (a === 'Unassigned') return 1;
+      if (b === 'Unassigned') return -1;
+      return a.localeCompare(b);
+    });
+  }, [projects, roles]);
 
   const filteredTasks = useMemo(() => {
-    if (filterProject === 'all') return tasks;
-    return tasks.filter((t) => t.projectId === filterProject);
-  }, [tasks, filterProject]);
+    let result = tasks;
+    if (filterProject !== 'all') {
+      result = result.filter((t) => t.projectId === filterProject);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter((t) => {
+        const project = projects.find((p) => p.id === t.projectId);
+        return (
+          t.title.toLowerCase().includes(q) ||
+          (t.description && t.description.toLowerCase().includes(q)) ||
+          (t.tags && t.tags.some((tag) => tag.toLowerCase().includes(q))) ||
+          (project && project.name.toLowerCase().includes(q))
+        );
+      });
+    }
+    return result;
+  }, [tasks, filterProject, searchQuery, projects]);
 
   const grouped = useMemo(() => {
     const map = {};
@@ -98,6 +137,7 @@ export default function TasksPage() {
       status: task.status,
       deadline: task.deadline || '',
       estimatedHours: task.estimatedHours || '',
+      description: task.description || '',
     });
     setFormOpen(true);
     closeMenu();
@@ -173,6 +213,33 @@ export default function TasksPage() {
           </div>
         }
       />
+
+      {/* Search bar */}
+      <div className="mb-5">
+        <TextField
+          placeholder="Search tasks by title, description, tag, or project..."
+          size="small"
+          fullWidth
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search sx={{ fontSize: 18, color: '#475569' }} />
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              backgroundColor: '#12141A',
+              borderRadius: '12px',
+              '& fieldset': { borderColor: '#2A2D35' },
+              '&:hover fieldset': { borderColor: '#3A3D45' },
+              '&.Mui-focused fieldset': { borderColor: '#6C63FF' },
+            },
+          }}
+        />
+      </div>
 
       {/* Filter row */}
       <AnimatePresence>
@@ -262,6 +329,11 @@ export default function TasksPage() {
                             <MoreVert sx={{ fontSize: 16 }} />
                           </IconButton>
                         </div>
+                        {task.description && (
+                          <p className="mb-2 text-xs text-slate-500 line-clamp-2">
+                            {task.description}
+                          </p>
+                        )}
                         {project && (
                           <div className="mb-2 flex items-center gap-1.5">
                             <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: project.color }} />
@@ -350,6 +422,15 @@ export default function TasksPage() {
             autoFocus
           />
           <TextField
+            label="Description"
+            fullWidth
+            multiline
+            rows={3}
+            value={form.description}
+            onChange={set('description')}
+            placeholder="Optional — add details, notes, or context..."
+          />
+          <TextField
             select
             label="Project"
             fullWidth
@@ -357,14 +438,19 @@ export default function TasksPage() {
             onChange={set('projectId')}
           >
             <MenuItem value="">No Project</MenuItem>
-            {projects.map((p) => (
-              <MenuItem key={p.id} value={p.id}>
-                <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: p.color }} />
-                  {p.name}
-                </div>
-              </MenuItem>
-            ))}
+            {projectsByCompany.map(([company, companyProjects]) => [
+              <MenuItem key={`header-${company}`} disabled sx={{ opacity: 0.6, fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', mt: 1 }}>
+                {company}
+              </MenuItem>,
+              ...companyProjects.map((p) => (
+                <MenuItem key={p.id} value={p.id} sx={{ pl: 3 }}>
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full" style={{ backgroundColor: p.color }} />
+                    {p.name}
+                  </div>
+                </MenuItem>
+              )),
+            ])}
           </TextField>
           <div className="grid grid-cols-2 gap-4">
             <TextField

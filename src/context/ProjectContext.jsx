@@ -45,6 +45,7 @@ export function ProjectProvider({ children }) {
       ownerId: 'user-1',
       memberIds: ['user-1'],
       status: 'active',
+      roleId: null,
       ...data,
     };
     dispatch({ type: ACTION.ADD, payload: project });

@@ -1,4 +1,49 @@
 // Seed data uses fixed IDs — uid.js is used at runtime for new items
+
+const SEED_ROLES = [
+  {
+    id: 'role-1',
+    title: 'Software Engineer',
+    company: 'FHS Technologies',
+    type: 'employee',
+    isActive: true,
+    startDate: '2025-06-01',
+    endDate: null,
+    createdAt: '2025-06-01T09:00:00Z',
+  },
+  {
+    id: 'role-2',
+    title: 'Freelance Developer',
+    company: 'Freelance',
+    type: 'freelancer',
+    isActive: true,
+    startDate: '2024-01-15',
+    endDate: null,
+    createdAt: '2024-01-15T09:00:00Z',
+  },
+  {
+    id: 'role-3',
+    title: 'Co-founder & CTO',
+    company: 'DataViz Labs',
+    type: 'founder',
+    isActive: true,
+    startDate: '2025-11-01',
+    endDate: null,
+    createdAt: '2025-11-01T09:00:00Z',
+  },
+];
+
+const SEED_PROFILE = {
+  id: 'user-1',
+  name: 'Mustafa Ahmed',
+  email: 'mustafa@example.com',
+  avatar: null,
+  bio: 'Full-stack software engineer working across multiple companies and projects.',
+  primaryRoleId: 'role-1',
+  skills: ['React', 'Node.js', 'TypeScript', 'Python', 'UI/UX', 'DevOps'],
+  createdAt: '2025-01-01T09:00:00Z',
+};
+
 const SEED_PROJECTS = [
   {
     id: 'proj-1',
@@ -10,6 +55,7 @@ const SEED_PROJECTS = [
     deadline: '2026-04-15',
     ownerId: 'user-1',
     memberIds: ['user-1'],
+    roleId: 'role-1',
     createdAt: '2026-01-15T09:00:00Z',
   },
   {
@@ -22,6 +68,7 @@ const SEED_PROJECTS = [
     deadline: '2026-04-01',
     ownerId: 'user-1',
     memberIds: ['user-1'],
+    roleId: 'role-2',
     createdAt: '2026-02-01T09:00:00Z',
   },
   {
@@ -34,6 +81,7 @@ const SEED_PROJECTS = [
     deadline: '2026-03-28',
     ownerId: 'user-1',
     memberIds: ['user-1'],
+    roleId: 'role-1',
     createdAt: '2026-01-20T09:00:00Z',
   },
   {
@@ -46,6 +94,7 @@ const SEED_PROJECTS = [
     deadline: '2026-05-10',
     ownerId: 'user-1',
     memberIds: ['user-1'],
+    roleId: 'role-3',
     createdAt: '2026-02-15T09:00:00Z',
   },
   {
@@ -58,6 +107,7 @@ const SEED_PROJECTS = [
     deadline: '2026-04-20',
     ownerId: 'user-1',
     memberIds: ['user-1'],
+    roleId: 'role-1',
     createdAt: '2026-02-10T09:00:00Z',
   },
   {
@@ -70,48 +120,49 @@ const SEED_PROJECTS = [
     deadline: '2026-04-30',
     ownerId: 'user-1',
     memberIds: ['user-1'],
+    roleId: 'role-2',
     createdAt: '2026-02-20T09:00:00Z',
   },
 ];
 
 const SEED_TASKS = [
-  // E-Commerce Platform
-  { id: 'task-1', title: 'Set up project repo and boilerplate', projectId: 'proj-1', status: 'done', priority: 'low', deadline: '2026-01-20', estimatedHours: 2, loggedHours: 1.5, createdAt: '2026-01-15T10:00:00Z', subtasks: [] },
-  { id: 'task-2', title: 'Design database schema', projectId: 'proj-1', status: 'done', priority: 'high', deadline: '2026-01-25', estimatedHours: 6, loggedHours: 5, createdAt: '2026-01-16T10:00:00Z', subtasks: [] },
-  { id: 'task-3', title: 'Build product listing component', projectId: 'proj-1', status: 'in_progress', priority: 'medium', deadline: '2026-03-21', estimatedHours: 8, loggedHours: 3.5, createdAt: '2026-03-10T10:00:00Z', subtasks: [{ id: 'st-1', title: 'Product card UI', completed: true }, { id: 'st-2', title: 'Filtering logic', completed: false }, { id: 'st-3', title: 'Pagination', completed: false }] },
-  { id: 'task-4', title: 'Implement shopping cart', projectId: 'proj-1', status: 'todo', priority: 'high', deadline: '2026-03-28', estimatedHours: 12, loggedHours: 0, createdAt: '2026-03-12T10:00:00Z', subtasks: [] },
-  { id: 'task-5', title: 'Payment integration (Stripe)', projectId: 'proj-1', status: 'todo', priority: 'high', deadline: '2026-04-05', estimatedHours: 16, loggedHours: 0, createdAt: '2026-03-12T10:00:00Z', subtasks: [] },
-  { id: 'task-6', title: 'Admin panel — product management', projectId: 'proj-1', status: 'todo', priority: 'medium', deadline: '2026-04-10', estimatedHours: 10, loggedHours: 0, createdAt: '2026-03-12T10:00:00Z', subtasks: [] },
+  // E-Commerce Platform (FHS Technologies)
+  { id: 'task-1', title: 'Set up project repo and boilerplate', description: '', tags: [], projectId: 'proj-1', status: 'done', priority: 'low', deadline: '2026-01-20', estimatedHours: 2, loggedHours: 1.5, createdAt: '2026-01-15T10:00:00Z', subtasks: [] },
+  { id: 'task-2', title: 'Design database schema', description: 'Define tables for products, orders, users, and payments. Include indexes and relationships.', tags: ['database'], projectId: 'proj-1', status: 'done', priority: 'high', deadline: '2026-01-25', estimatedHours: 6, loggedHours: 5, createdAt: '2026-01-16T10:00:00Z', subtasks: [] },
+  { id: 'task-3', title: 'Build product listing component', description: 'React component with grid/list view toggle, filtering by category, and pagination.', tags: ['frontend', 'component'], projectId: 'proj-1', status: 'in_progress', priority: 'medium', deadline: '2026-03-21', estimatedHours: 8, loggedHours: 3.5, createdAt: '2026-03-10T10:00:00Z', subtasks: [{ id: 'st-1', title: 'Product card UI', completed: true }, { id: 'st-2', title: 'Filtering logic', completed: false }, { id: 'st-3', title: 'Pagination', completed: false }] },
+  { id: 'task-4', title: 'Implement shopping cart', description: '', tags: ['frontend', 'state'], projectId: 'proj-1', status: 'todo', priority: 'high', deadline: '2026-03-28', estimatedHours: 12, loggedHours: 0, createdAt: '2026-03-12T10:00:00Z', subtasks: [] },
+  { id: 'task-5', title: 'Payment integration (Stripe)', description: '', tags: ['backend', 'payments'], projectId: 'proj-1', status: 'todo', priority: 'high', deadline: '2026-04-05', estimatedHours: 16, loggedHours: 0, createdAt: '2026-03-12T10:00:00Z', subtasks: [] },
+  { id: 'task-6', title: 'Admin panel — product management', description: '', tags: ['frontend', 'admin'], projectId: 'proj-1', status: 'todo', priority: 'medium', deadline: '2026-04-10', estimatedHours: 10, loggedHours: 0, createdAt: '2026-03-12T10:00:00Z', subtasks: [] },
 
-  // API Migration
-  { id: 'task-7', title: 'Implement auth middleware refactor', projectId: 'proj-3', status: 'in_progress', priority: 'high', deadline: '2026-03-20', estimatedHours: 10, loggedHours: 6.5, createdAt: '2026-03-05T10:00:00Z', subtasks: [{ id: 'st-4', title: 'JWT validation', completed: true }, { id: 'st-5', title: 'Refresh token flow', completed: true }, { id: 'st-6', title: 'Role-based guards', completed: false }] },
-  { id: 'task-8', title: 'PR #247 — Auth Module tests', projectId: 'proj-3', status: 'in_review', priority: 'high', deadline: '2026-03-19', estimatedHours: 4, loggedHours: 3, createdAt: '2026-03-15T10:00:00Z', subtasks: [] },
-  { id: 'task-9', title: 'Write API documentation for v3', projectId: 'proj-3', status: 'todo', priority: 'medium', deadline: '2026-03-24', estimatedHours: 6, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
-  { id: 'task-10', title: 'Rate limiting middleware', projectId: 'proj-3', status: 'done', priority: 'high', deadline: '2026-03-10', estimatedHours: 8, loggedHours: 7, createdAt: '2026-02-20T10:00:00Z', subtasks: [] },
-  { id: 'task-11', title: 'Cache layer implementation', projectId: 'proj-3', status: 'done', priority: 'medium', deadline: '2026-03-05', estimatedHours: 6, loggedHours: 5.5, createdAt: '2026-02-20T10:00:00Z', subtasks: [] },
+  // API Migration v3 (FHS Technologies)
+  { id: 'task-7', title: 'Implement auth middleware refactor', description: 'Refactor auth middleware to support JWT validation, refresh tokens, and role-based guards.', tags: ['backend', 'auth'], projectId: 'proj-3', status: 'in_progress', priority: 'high', deadline: '2026-03-20', estimatedHours: 10, loggedHours: 6.5, createdAt: '2026-03-05T10:00:00Z', subtasks: [{ id: 'st-4', title: 'JWT validation', completed: true }, { id: 'st-5', title: 'Refresh token flow', completed: true }, { id: 'st-6', title: 'Role-based guards', completed: false }] },
+  { id: 'task-8', title: 'PR #247 — Auth Module tests', description: '', tags: ['testing'], projectId: 'proj-3', status: 'in_review', priority: 'high', deadline: '2026-03-19', estimatedHours: 4, loggedHours: 3, createdAt: '2026-03-15T10:00:00Z', subtasks: [] },
+  { id: 'task-9', title: 'Write API documentation for v3', description: '', tags: ['docs'], projectId: 'proj-3', status: 'todo', priority: 'medium', deadline: '2026-03-24', estimatedHours: 6, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  { id: 'task-10', title: 'Rate limiting middleware', description: '', tags: ['backend', 'security'], projectId: 'proj-3', status: 'done', priority: 'high', deadline: '2026-03-10', estimatedHours: 8, loggedHours: 7, createdAt: '2026-02-20T10:00:00Z', subtasks: [] },
+  { id: 'task-11', title: 'Cache layer implementation', description: '', tags: ['backend', 'performance'], projectId: 'proj-3', status: 'done', priority: 'medium', deadline: '2026-03-05', estimatedHours: 6, loggedHours: 5.5, createdAt: '2026-02-20T10:00:00Z', subtasks: [] },
 
-  // Mobile App Redesign
-  { id: 'task-12', title: 'Design onboarding flow wireframes', projectId: 'proj-2', status: 'todo', priority: 'low', deadline: '2026-03-25', estimatedHours: 5, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
-  { id: 'task-13', title: 'Redesign home screen', projectId: 'proj-2', status: 'in_progress', priority: 'high', deadline: '2026-03-22', estimatedHours: 12, loggedHours: 4, createdAt: '2026-03-05T10:00:00Z', subtasks: [] },
-  { id: 'task-14', title: 'Update navigation patterns', projectId: 'proj-2', status: 'done', priority: 'medium', deadline: '2026-03-10', estimatedHours: 6, loggedHours: 5.5, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
-  { id: 'task-15', title: 'Implement gesture controls', projectId: 'proj-2', status: 'todo', priority: 'medium', deadline: '2026-03-30', estimatedHours: 8, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  // Mobile App Redesign (Freelance)
+  { id: 'task-12', title: 'Design onboarding flow wireframes', description: '', tags: ['design', 'ux'], projectId: 'proj-2', status: 'todo', priority: 'low', deadline: '2026-03-25', estimatedHours: 5, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  { id: 'task-13', title: 'Redesign home screen', description: '', tags: ['design', 'ui'], projectId: 'proj-2', status: 'in_progress', priority: 'high', deadline: '2026-03-22', estimatedHours: 12, loggedHours: 4, createdAt: '2026-03-05T10:00:00Z', subtasks: [] },
+  { id: 'task-14', title: 'Update navigation patterns', description: '', tags: ['design'], projectId: 'proj-2', status: 'done', priority: 'medium', deadline: '2026-03-10', estimatedHours: 6, loggedHours: 5.5, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
+  { id: 'task-15', title: 'Implement gesture controls', description: '', tags: ['frontend', 'mobile'], projectId: 'proj-2', status: 'todo', priority: 'medium', deadline: '2026-03-30', estimatedHours: 8, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
 
-  // Dashboard Analytics
-  { id: 'task-16', title: 'Set up project repo and boilerplate', projectId: 'proj-4', status: 'done', priority: 'low', deadline: '2026-02-20', estimatedHours: 2, loggedHours: 1.5, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
-  { id: 'task-17', title: 'Define KPI data models', projectId: 'proj-4', status: 'in_progress', priority: 'high', deadline: '2026-03-25', estimatedHours: 6, loggedHours: 2, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
-  { id: 'task-18', title: 'Build chart components', projectId: 'proj-4', status: 'todo', priority: 'high', deadline: '2026-04-05', estimatedHours: 14, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  // Dashboard Analytics (DataViz Labs)
+  { id: 'task-16', title: 'Set up project repo and boilerplate', description: '', tags: [], projectId: 'proj-4', status: 'done', priority: 'low', deadline: '2026-02-20', estimatedHours: 2, loggedHours: 1.5, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
+  { id: 'task-17', title: 'Define KPI data models', description: '', tags: ['backend', 'data'], projectId: 'proj-4', status: 'in_progress', priority: 'high', deadline: '2026-03-25', estimatedHours: 6, loggedHours: 2, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  { id: 'task-18', title: 'Build chart components', description: '', tags: ['frontend', 'charts'], projectId: 'proj-4', status: 'todo', priority: 'high', deadline: '2026-04-05', estimatedHours: 14, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
 
-  // CI/CD Pipeline Revamp
-  { id: 'task-19', title: 'Set up CI/CD pipeline for staging', projectId: 'proj-5', status: 'todo', priority: 'high', deadline: '2026-03-22', estimatedHours: 8, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
-  { id: 'task-20', title: 'Configure parallel job execution', projectId: 'proj-5', status: 'done', priority: 'medium', deadline: '2026-03-05', estimatedHours: 6, loggedHours: 5, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
-  { id: 'task-21', title: 'Implement build caching', projectId: 'proj-5', status: 'done', priority: 'high', deadline: '2026-03-10', estimatedHours: 10, loggedHours: 9, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
-  { id: 'task-22', title: 'CI pipeline debugging', projectId: 'proj-5', status: 'in_review', priority: 'medium', deadline: '2026-03-20', estimatedHours: 4, loggedHours: 3.5, createdAt: '2026-03-15T10:00:00Z', subtasks: [] },
+  // CI/CD Pipeline Revamp (FHS Technologies)
+  { id: 'task-19', title: 'Set up CI/CD pipeline for staging', description: '', tags: ['devops'], projectId: 'proj-5', status: 'todo', priority: 'high', deadline: '2026-03-22', estimatedHours: 8, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  { id: 'task-20', title: 'Configure parallel job execution', description: '', tags: ['devops'], projectId: 'proj-5', status: 'done', priority: 'medium', deadline: '2026-03-05', estimatedHours: 6, loggedHours: 5, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
+  { id: 'task-21', title: 'Implement build caching', description: '', tags: ['devops', 'performance'], projectId: 'proj-5', status: 'done', priority: 'high', deadline: '2026-03-10', estimatedHours: 10, loggedHours: 9, createdAt: '2026-02-15T10:00:00Z', subtasks: [] },
+  { id: 'task-22', title: 'CI pipeline debugging', description: '', tags: ['devops'], projectId: 'proj-5', status: 'in_review', priority: 'medium', deadline: '2026-03-20', estimatedHours: 4, loggedHours: 3.5, createdAt: '2026-03-15T10:00:00Z', subtasks: [] },
 
-  // Design System v2
-  { id: 'task-23', title: 'Configure Tailwind + MUI theme', projectId: 'proj-6', status: 'done', priority: 'medium', deadline: '2026-03-01', estimatedHours: 4, loggedHours: 3, createdAt: '2026-02-20T10:00:00Z', subtasks: [] },
-  { id: 'task-24', title: 'Update color tokens for dark mode', projectId: 'proj-6', status: 'in_review', priority: 'medium', deadline: '2026-03-21', estimatedHours: 5, loggedHours: 4, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
-  { id: 'task-25', title: 'Build button component variants', projectId: 'proj-6', status: 'in_progress', priority: 'low', deadline: '2026-03-28', estimatedHours: 6, loggedHours: 2, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
-  { id: 'task-26', title: 'Accessibility audit', projectId: 'proj-6', status: 'todo', priority: 'high', deadline: '2026-04-10', estimatedHours: 8, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  // Design System v2 (Freelance)
+  { id: 'task-23', title: 'Configure Tailwind + MUI theme', description: '', tags: ['frontend', 'design-system'], projectId: 'proj-6', status: 'done', priority: 'medium', deadline: '2026-03-01', estimatedHours: 4, loggedHours: 3, createdAt: '2026-02-20T10:00:00Z', subtasks: [] },
+  { id: 'task-24', title: 'Update color tokens for dark mode', description: '', tags: ['design-system'], projectId: 'proj-6', status: 'in_review', priority: 'medium', deadline: '2026-03-21', estimatedHours: 5, loggedHours: 4, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  { id: 'task-25', title: 'Build button component variants', description: '', tags: ['frontend', 'design-system'], projectId: 'proj-6', status: 'in_progress', priority: 'low', deadline: '2026-03-28', estimatedHours: 6, loggedHours: 2, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
+  { id: 'task-26', title: 'Accessibility audit', description: '', tags: ['a11y'], projectId: 'proj-6', status: 'todo', priority: 'high', deadline: '2026-04-10', estimatedHours: 8, loggedHours: 0, createdAt: '2026-03-10T10:00:00Z', subtasks: [] },
 ];
 
 // Add assigneeId to all tasks
@@ -138,4 +189,4 @@ const SEED_MILESTONES = [
   { id: 'ms-5', title: 'Analytics Dashboard MVP', projectId: 'proj-4', targetDate: '2026-05-01', status: 'behind', taskIds: ['task-16', 'task-17', 'task-18'] },
 ];
 
-export { SEED_PROJECTS, SEED_TASKS, SEED_TIME_ENTRIES, SEED_MILESTONES };
+export { SEED_ROLES, SEED_PROFILE, SEED_PROJECTS, SEED_TASKS, SEED_TIME_ENTRIES, SEED_MILESTONES };

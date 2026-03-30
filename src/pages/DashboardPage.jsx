@@ -1,19 +1,22 @@
-import { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, LinearProgress, Chip } from '@mui/material';
+import { Card, CardContent, LinearProgress, Chip, Button, TextField, MenuItem } from '@mui/material';
 import {
   FolderCopy,
   CheckCircleOutline,
   Timer,
   TrendingUp,
   Assignment,
+  Add,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/common/PageHeader';
 import StatCard from '../components/common/StatCard';
+import FormDialog from '../components/common/FormDialog';
 import { useProjects } from '../context/ProjectContext';
 import { useTasks } from '../context/TaskContext';
 import { useTime } from '../context/TimeContext';
+import { useUser } from '../context/UserContext';
 import { computeProjectProgress, STATUS_DISPLAY, PRIORITY_COLOR, relativeDate, formatDuration } from '../utils/format';
 
 const container = {
@@ -26,11 +29,41 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
+const EMPTY_TASK_FORM = {
+  title: '',
+  projectId: '',
+  priority: 'medium',
+  deadline: '',
+  description: '',
+};
+
 export default function DashboardPage() {
   const { projects } = useProjects();
-  const { tasks } = useTasks();
+  const { tasks, addTask } = useTasks();
   const { entries } = useTime();
+  const { profile, roles } = useUser();
   const navigate = useNavigate();
+
+  const [quickAddOpen, setQuickAddOpen] = useState(false);
+  const [taskForm, setTaskForm] = useState(EMPTY_TASK_FORM);
+
+  // Group projects by company for dropdown
+  const projectsByCompany = useMemo(() => {
+    const roleMap = {};
+    roles.forEach((r) => { roleMap[r.id] = r; });
+    const groups = {};
+    projects.forEach((p) => {
+      const role = p.roleId ? roleMap[p.roleId] : null;
+      const company = role ? role.company : 'Unassigned';
+      if (!groups[company]) groups[company] = [];
+      groups[company].push(p);
+    });
+    return Object.entries(groups).sort(([a], [b]) => {
+      if (a === 'Unassigned') return 1;
+      if (b === 'Unassigned') return -1;
+      return a.localeCompare(b);
+    });
+  }, [projects, roles]);
 
   const stats = useMemo(() => {
     const activeProjects = projects.length;
@@ -38,7 +71,6 @@ export default function DashboardPage() {
     const totalTasks = tasks.length;
     const completionRate = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
-    // Hours this week
     const now = new Date();
     const weekStart = new Date(now);
     weekStart.setDate(now.getDate() - now.getDay());
@@ -50,7 +82,6 @@ export default function DashboardPage() {
     return { activeProjects, completedTasks, completionRate, weekMinutes };
   }, [projects, tasks, entries]);
 
-  // Recent projects with computed progress
   const recentProjects = useMemo(() => {
     return projects.slice(0, 4).map((p) => {
       const projectTasks = tasks.filter((t) => t.projectId === p.id);
@@ -60,7 +91,6 @@ export default function DashboardPage() {
     });
   }, [projects, tasks]);
 
-  // Upcoming tasks (non-done, sorted by deadline)
   const upcomingTasks = useMemo(() => {
     return tasks
       .filter((t) => t.status !== 'done' && t.deadline)
@@ -68,11 +98,28 @@ export default function DashboardPage() {
       .slice(0, 6);
   }, [tasks]);
 
+  const handleQuickAdd = () => {
+    if (!taskForm.title.trim()) return;
+    addTask({
+      ...taskForm,
+      status: 'todo',
+    });
+    setTaskForm(EMPTY_TASK_FORM);
+    setQuickAddOpen(false);
+  };
+
+  const setField = (field) => (e) => setTaskForm((prev) => ({ ...prev, [field]: e.target.value }));
+
   return (
     <motion.div variants={container} initial="hidden" animate="show">
       <PageHeader
         title="Dashboard"
-        subtitle="Welcome back, Mustafa — here's what's happening across your projects."
+        subtitle={`Welcome back, ${profile?.name?.split(' ')[0] || 'there'} — here's what's happening across your projects.`}
+        action={
+          <Button variant="contained" startIcon={<Add />} size="small" onClick={() => setQuickAddOpen(true)}>
+            Quick Add Task
+          </Button>
+        }
       />
 
       {/* Stat cards */}
@@ -126,7 +173,7 @@ export default function DashboardPage() {
                   <div
                     key={project.id}
                     className="rounded-xl border border-[#2A2D35] p-4 cursor-pointer hover:border-[#6C63FF30] transition-colors"
-                    onClick={() => navigate('/projects')}
+                    onClick={() => navigate(`/projects/${project.id}`)}
                   >
                     <div className="mb-2 flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -239,6 +286,79 @@ export default function DashboardPage() {
           </Card>
         </motion.div>
       </div>
+
+      {/* Quick Add Task dialog */}
+      <FormDialog
+        open={quickAddOpen}
+        onClose={() => setQuickAddOpen(false)}
+        title="Quick Add Task"
+        submitLabel="Add Task"
+        onSubmit={handleQuickAdd}
+      >
+        <div className="space-y-4 pt-1">
+          <TextField
+            label="Task Title"
+            fullWidth
+            value={taskForm.title}
+            onChange={setField('title')}
+            autoFocus
+            placeholder="What needs to be done?"
+          />
+          <TextField
+            label="Description"
+            fullWidth
+            multiline
+            rows={2}
+            value={taskForm.description}
+            onChange={setField('description')}
+            placeholder="Optional details..."
+          />
+          <TextField
+            select
+            label="Project"
+            fullWidth
+            value={taskForm.projectId}
+            onChange={setField('projectId')}
+          >
+            <MenuItem value="">No Project</MenuItem>
+            {projectsByCompany.map(([company, companyProjects]) => [
+              <MenuItem key={`header-${company}`} disabled sx={{ opacity: 0.6, fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', mt: 1 }}>
+                {company}
+              </MenuItem>,
+              ...companyProjects.map((p) => (
+                <MenuItem key={p.id} value={p.id} sx={{ pl: 3 }}>
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full" style={{ backgroundColor: p.color }} />
+                    {p.name}
+                  </div>
+                </MenuItem>
+              )),
+            ])}
+          </TextField>
+          <div className="grid grid-cols-2 gap-4">
+            <TextField
+              select
+              label="Priority"
+              fullWidth
+              value={taskForm.priority}
+              onChange={setField('priority')}
+            >
+              <MenuItem value="low">Low</MenuItem>
+              <MenuItem value="medium">Medium</MenuItem>
+              <MenuItem value="high">High</MenuItem>
+              <MenuItem value="critical">Critical</MenuItem>
+            </TextField>
+            <TextField
+              label="Deadline"
+              type="date"
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              value={taskForm.deadline}
+              onChange={setField('deadline')}
+            />
+          </div>
+        </div>
+      </FormDialog>
     </motion.div>
   );
 }
