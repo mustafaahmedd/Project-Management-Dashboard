@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <filter id="s4">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="720" rx="16" fill="#0B0D11"/>
+
+  <!-- Title -->
+  <text x="500" y="38" text-anchor="middle" fill="#F1F5F9" font-size="22" font-weight="800" font-family="Plus Jakarta Sans, Inter, sans-serif">Sequence Diagram — Task CRUD &amp; Timer</text>
+  <text x="500" y="58" text-anchor="middle" fill="#94A3B8" font-size="12">Interactions between User, UI, Context, and Storage</text>
+
+  <!-- Lifeline Headers -->
+  <rect x="40" y="78" width="90" height="36" rx="8" fill="#6C63FF" filter="url(#s4)"/>
+  <text x="85" y="100" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">User</text>
+
+  <rect x="210" y="78" width="120" height="36" rx="8" fill="#12141A" stroke="#34D399" filter="url(#s4)"/>
+  <text x="270" y="100" text-anchor="middle" fill="#34D399" font-size="11" font-weight="600">TasksPage</text>
+
+  <rect x="420" y="78" width="120" height="36" rx="8" fill="#12141A" stroke="#FBBF24" filter="url(#s4)"/>
+  <text x="480" y="100" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="600">TaskContext</text>
+
+  <rect x="620" y="78" width="120" height="36" rx="8" fill="#12141A" stroke="#34D399" filter="url(#s4)"/>
+  <text x="680" y="100" text-anchor="middle" fill="#34D399" font-size="11" font-weight="600">localStorage</text>
+
+  <rect x="840" y="78" width="120" height="36" rx="8" fill="#12141A" stroke="#60A5FA" filter="url(#s4)"/>
+  <text x="900" y="100" text-anchor="middle" fill="#60A5FA" font-size="11" font-weight="600">Dashboard</text>
+
+  <!-- Lifelines (vertical dashed) -->
+  <line x1="85" y1="114" x2="85" y2="690" stroke="#6C63FF" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+  <line x1="270" y1="114" x2="270" y2="690" stroke="#34D399" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+  <line x1="480" y1="114" x2="480" y2="690" stroke="#FBBF24" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+  <line x1="680" y1="114" x2="680" y2="690" stroke="#34D399" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+  <line x1="900" y1="114" x2="900" y2="690" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+
+  <!-- === CREATE TASK === -->
+  <rect x="30" y="130" width="940" height="18" rx="4" fill="#6C63FF08"/>
+  <text x="500" y="143" text-anchor="middle" fill="#6C63FF" font-size="10" font-weight="700">CREATE TASK</text>
+
+  <!-- User → UI: Click "Add Task" -->
+  <line x1="85" y1="160" x2="260" y2="160" stroke="#6C63FF" stroke-width="1.5"/>
+  <polygon points="260,160 252,156 252,164" fill="#6C63FF"/>
+  <text x="172" y="155" text-anchor="middle" fill="#94A3B8" font-size="9">Click "Add Task"</text>
+
+  <!-- UI → UI: Open modal -->
+  <path d="M 280 175 Q 320 175 320 190 Q 320 205 280 205" fill="none" stroke="#34D399" stroke-width="1"/>
+  <text x="330" y="193" fill="#34D399" font-size="9">Open modal</text>
+
+  <!-- User → UI: Fill form -->
+  <line x1="85" y1="220" x2="260" y2="220" stroke="#6C63FF" stroke-width="1.5"/>
+  <polygon points="260,220 252,216 252,224" fill="#6C63FF"/>
+  <text x="172" y="215" text-anchor="middle" fill="#94A3B8" font-size="9">Fill title, priority, deadline</text>
+
+  <!-- UI → Context: addTask(data) -->
+  <line x1="270" y1="240" x2="470" y2="240" stroke="#FBBF24" stroke-width="1.5"/>
+  <polygon points="470,240 462,236 462,244" fill="#FBBF24"/>
+  <text x="370" y="235" text-anchor="middle" fill="#FBBF24" font-size="9">addTask(taskData)</text>
+
+  <!-- Context → Storage: save -->
+  <line x1="480" y1="255" x2="670" y2="255" stroke="#34D399" stroke-width="1.5"/>
+  <polygon points="670,255 662,251 662,259" fill="#34D399"/>
+  <text x="575" y="250" text-anchor="middle" fill="#34D399" font-size="9">localStorage.setItem()</text>
+
+  <!-- Storage → Context: saved -->
+  <line x1="670" y1="270" x2="490" y2="270" stroke="#34D399" stroke-width="1" stroke-dasharray="4 3"/>
+  <polygon points="490,270 498,266 498,274" fill="#34D399"/>
+  <text x="575" y="265" text-anchor="middle" fill="#475569" font-size="8">Saved ✓</text>
+
+  <!-- Context → UI: state updated -->
+  <line x1="470" y1="285" x2="280" y2="285" stroke="#FBBF24" stroke-width="1" stroke-dasharray="4 3"/>
+  <polygon points="280,285 288,281 288,289" fill="#FBBF24"/>
+  <text x="375" y="280" text-anchor="middle" fill="#FBBF24" font-size="8">State updated — new task in "To Do"</text>
+
+  <!-- Context → Dashboard: recompute -->
+  <line x1="480" y1="300" x2="890" y2="300" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 3"/>
+  <polygon points="890,300 882,296 882,304" fill="#60A5FA"/>
+  <text x="685" y="295" text-anchor="middle" fill="#60A5FA" font-size="8">Dashboard stats recomputed</text>
+
+  <!-- === MOVE TASK === -->
+  <rect x="30" y="325" width="940" height="18" rx="4" fill="#34D39908"/>
+  <text x="500" y="338" text-anchor="middle" fill="#34D399" font-size="10" font-weight="700">MOVE TASK (Kanban)</text>
+
+  <!-- User → UI: Click Move Forward -->
+  <line x1="85" y1="360" x2="260" y2="360" stroke="#6C63FF" stroke-width="1.5"/>
+  <polygon points="260,360 252,356 252,364" fill="#6C63FF"/>
+  <text x="172" y="355" text-anchor="middle" fill="#94A3B8" font-size="9">Menu → "Move Forward"</text>
+
+  <!-- UI → Context: moveTask -->
+  <line x1="270" y1="380" x2="470" y2="380" stroke="#FBBF24" stroke-width="1.5"/>
+  <polygon points="470,380 462,376 462,384" fill="#FBBF24"/>
+  <text x="370" y="375" text-anchor="middle" fill="#FBBF24" font-size="9">moveTask(id, "in_progress")</text>
+
+  <!-- Context → Storage -->
+  <line x1="480" y1="395" x2="670" y2="395" stroke="#34D399" stroke-width="1.5"/>
+  <polygon points="670,395 662,391 662,399" fill="#34D399"/>
+  <text x="575" y="390" text-anchor="middle" fill="#34D399" font-size="9">Update in localStorage</text>
+
+  <!-- Context → UI: re-render -->
+  <line x1="470" y1="415" x2="280" y2="415" stroke="#FBBF24" stroke-width="1" stroke-dasharray="4 3"/>
+  <polygon points="280,415 288,411 288,419" fill="#FBBF24"/>
+  <text x="375" y="410" text-anchor="middle" fill="#FBBF24" font-size="8">Re-render Kanban columns</text>
+
+  <!-- Context → Dashboard -->
+  <line x1="480" y1="430" x2="890" y2="430" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 3"/>
+  <polygon points="890,430 882,426 882,434" fill="#60A5FA"/>
+  <text x="685" y="425" text-anchor="middle" fill="#60A5FA" font-size="8">Stats update (in_progress count +1)</text>
+
+  <!-- === DELETE TASK === -->
+  <rect x="30" y="455" width="940" height="18" rx="4" fill="#F8717108"/>
+  <text x="500" y="468" text-anchor="middle" fill="#F87171" font-size="10" font-weight="700">DELETE TASK</text>
+
+  <!-- User → UI: Click delete -->
+  <line x1="85" y1="490" x2="260" y2="490" stroke="#6C63FF" stroke-width="1.5"/>
+  <polygon points="260,490 252,486 252,494" fill="#6C63FF"/>
+  <text x="172" y="485" text-anchor="middle" fill="#94A3B8" font-size="9">Menu → "Delete"</text>
+
+  <!-- UI → UI: Confirm dialog -->
+  <path d="M 280 505 Q 320 505 320 518 Q 320 531 280 531" fill="none" stroke="#F87171" stroke-width="1"/>
+  <text x="330" y="520" fill="#F87171" font-size="9">Confirm dialog</text>
+
+  <!-- User → UI: Confirm -->
+  <line x1="85" y1="545" x2="260" y2="545" stroke="#6C63FF" stroke-width="1.5"/>
+  <polygon points="260,545 252,541 252,549" fill="#6C63FF"/>
+  <text x="172" y="540" text-anchor="middle" fill="#94A3B8" font-size="9">Confirm delete</text>
+
+  <!-- UI → Context -->
+  <line x1="270" y1="560" x2="470" y2="560" stroke="#F87171" stroke-width="1.5"/>
+  <polygon points="470,560 462,556 462,564" fill="#F87171"/>
+  <text x="370" y="555" text-anchor="middle" fill="#F87171" font-size="9">deleteTask(id)</text>
+
+  <!-- Context → Storage -->
+  <line x1="480" y1="575" x2="670" y2="575" stroke="#34D399" stroke-width="1.5"/>
+  <polygon points="670,575 662,571 662,579" fill="#34D399"/>
+  <text x="575" y="570" text-anchor="middle" fill="#34D399" font-size="9">Remove from localStorage</text>
+
+  <!-- Context → UI -->
+  <line x1="470" y1="595" x2="280" y2="595" stroke="#F87171" stroke-width="1" stroke-dasharray="4 3"/>
+  <polygon points="280,595 288,591 288,599" fill="#F87171"/>
+  <text x="375" y="590" text-anchor="middle" fill="#F87171" font-size="8">Task removed from board</text>
+
+  <!-- Context → Dashboard -->
+  <line x1="480" y1="610" x2="890" y2="610" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 3"/>
+  <polygon points="890,610 882,606 882,614" fill="#60A5FA"/>
+  <text x="685" y="605" text-anchor="middle" fill="#60A5FA" font-size="8">All stats recalculated</text>
+
+  <!-- Legend -->
+  <rect x="40" y="640" width="920" height="60" rx="10" fill="#12141A" stroke="#2A2D35"/>
+  <text x="60" y="662" fill="#F1F5F9" font-size="11" font-weight="700">Legend</text>
+  <line x1="60" y1="680" x2="100" y2="680" stroke="#6C63FF" stroke-width="1.5"/>
+  <text x="108" y="684" fill="#94A3B8" font-size="9">Sync request</text>
+  <line x1="200" y1="680" x2="240" y2="680" stroke="#FBBF24" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="248" y="684" fill="#94A3B8" font-size="9">Async response</text>
+  <rect x="370" y="673" width="60" height="14" rx="3" fill="#6C63FF08" stroke="#6C63FF20"/>
+  <text x="440" y="684" fill="#94A3B8" font-size="9">Operation phase</text>
+  <text x="580" y="684" fill="#475569" font-size="9">Solid lines = requests | Dashed = responses | Colors = component identity</text>
+</svg>

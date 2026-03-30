@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 650" width="950" height="650">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#60A5FA"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#34D399"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#F87171"/>
+    </marker>
+    <marker id="arrow-yellow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#FBBF24"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6C63FF"/>
+    </marker>
+    <marker id="arrow-dark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="950" height="650" fill="#0B0D11" rx="0"/>
+
+  <!-- Title -->
+  <text x="475" y="36" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#F1F5F9" letter-spacing="-0.02em">ProjectPulse — Task State Machine</text>
+  <text x="475" y="54" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#94A3B8">Lifecycle of a task from creation to archival</text>
+
+  <!-- ==================== STATES ==================== -->
+
+  <!-- Start Node (top-left) -->
+  <circle cx="60" cy="130" r="14" fill="none" stroke="#6C63FF" stroke-width="2.5"/>
+  <circle cx="60" cy="130" r="8" fill="#6C63FF"/>
+  <text x="60" y="158" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94A3B8">Start</text>
+
+  <!-- Draft (top-left area) -->
+  <rect x="110" y="95" width="200" height="70" rx="12" fill="#12141A" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="210" y="120" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#F1F5F9">Draft</text>
+  <text x="210" y="137" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Fill Title &rarr; Set Priority</text>
+  <text x="210" y="150" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Set Deadline &rarr; Assign Project</text>
+
+  <!-- To Do (center-top) -->
+  <rect x="380" y="95" width="160" height="55" rx="12" fill="#12141A" stroke="#60A5FA" stroke-width="1.5"/>
+  <text x="460" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#60A5FA">To Do</text>
+
+  <!-- In Progress (center) -->
+  <rect x="370" y="260" width="200" height="75" rx="12" fill="#12141A" stroke="#6C63FF" stroke-width="1.5"/>
+  <text x="470" y="288" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#6C63FF">In Progress</text>
+  <text x="470" y="305" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Timer Active &rarr; Working on Subtasks</text>
+  <text x="470" y="318" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">&rarr; All Subtasks Done</text>
+
+  <!-- On Hold (left) -->
+  <rect x="80" y="280" width="160" height="55" rx="12" fill="#12141A" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="160" y="313" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#94A3B8">On Hold</text>
+
+  <!-- In Review (center-right) -->
+  <rect x="660" y="260" width="170" height="55" rx="12" fill="#12141A" stroke="#FBBF24" stroke-width="1.5"/>
+  <text x="745" y="293" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#FBBF24">In Review</text>
+
+  <!-- Done (right) -->
+  <rect x="700" y="430" width="160" height="55" rx="12" fill="#12141A" stroke="#34D399" stroke-width="1.5"/>
+  <text x="780" y="463" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#34D399">Done</text>
+
+  <!-- Reopened (bottom-right) -->
+  <rect x="460" y="430" width="160" height="55" rx="12" fill="#12141A" stroke="#F87171" stroke-width="1.5"/>
+  <text x="540" y="463" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#F87171">Reopened</text>
+
+  <!-- Cancelled (bottom-left) -->
+  <rect x="80" y="430" width="160" height="55" rx="12" fill="#12141A" stroke="#475569" stroke-width="1.5"/>
+  <text x="160" y="463" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#475569">Cancelled</text>
+
+  <!-- End Node (bottom-right) -->
+  <circle cx="880" cy="580" r="14" fill="none" stroke="#34D399" stroke-width="2.5"/>
+  <circle cx="880" cy="580" r="10" fill="none" stroke="#34D399" stroke-width="1.5"/>
+  <circle cx="880" cy="580" r="6" fill="#34D399"/>
+  <text x="880" y="608" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#94A3B8">End</text>
+
+  <!-- ==================== TRANSITIONS ==================== -->
+
+  <!-- Start → Draft: "User creates task" -->
+  <path d="M74,130 Q92,130 110,130" fill="none" stroke="#94A3B8" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="92" y="122" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94A3B8">User creates</text>
+  <text x="92" y="131" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#94A3B8">task</text>
+
+  <!-- Draft → To Do: "Save task" -->
+  <path d="M310,122 Q345,115 380,122" fill="none" stroke="#60A5FA" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+  <text x="345" y="108" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Save task</text>
+
+  <!-- Draft → End: "Discard" (long curved path down and right) -->
+  <path d="M210,165 Q210,580 866,580" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arrow-dark)"/>
+  <text x="240" y="540" font-family="sans-serif" font-size="9" fill="#94A3B8">Discard</text>
+
+  <!-- To Do → In Progress: "Start working" -->
+  <path d="M460,150 Q465,205 470,260" fill="none" stroke="#6C63FF" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <text x="485" y="210" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94A3B8">Start working</text>
+
+  <!-- To Do → Cancelled: "Cancel" -->
+  <path d="M380,140 Q270,200 200,280 Q140,355 160,430" fill="none" stroke="#475569" stroke-width="1.2" marker-end="url(#arrow-dark)"/>
+  <text x="240" y="230" font-family="sans-serif" font-size="9" fill="#94A3B8">Cancel</text>
+
+  <!-- In Progress → In Review: "Submit for review" -->
+  <path d="M570,287 Q615,282 660,287" fill="none" stroke="#FBBF24" stroke-width="1.2" marker-end="url(#arrow-yellow)"/>
+  <text x="615" y="274" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Submit for review</text>
+
+  <!-- In Progress → To Do: "Put back (blocked)" -->
+  <path d="M430,260 Q400,200 420,150" fill="none" stroke="#60A5FA" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+  <text x="390" y="210" text-anchor="end" font-family="sans-serif" font-size="9" fill="#94A3B8">Put back</text>
+  <text x="390" y="222" text-anchor="end" font-family="sans-serif" font-size="8" fill="#94A3B8">(blocked)</text>
+
+  <!-- In Progress → On Hold: "Pause work" -->
+  <path d="M370,300 Q290,298 240,300" fill="none" stroke="#94A3B8" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="305" y="290" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Pause work</text>
+
+  <!-- On Hold → In Progress: "Resume" -->
+  <path d="M240,320 Q305,330 370,315" fill="none" stroke="#6C63FF" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <text x="305" y="340" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Resume</text>
+
+  <!-- On Hold → Cancelled: "Cancel" -->
+  <path d="M160,335 Q160,382 160,430" fill="none" stroke="#475569" stroke-width="1.2" marker-end="url(#arrow-dark)"/>
+  <text x="172" y="385" font-family="sans-serif" font-size="9" fill="#94A3B8">Cancel</text>
+
+  <!-- In Review → In Progress: "Changes requested" -->
+  <path d="M700,315 Q640,340 570,320" fill="none" stroke="#6C63FF" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <text x="635" y="340" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Changes requested</text>
+
+  <!-- In Review → Done: "Approved" -->
+  <path d="M745,315 Q760,372 780,430" fill="none" stroke="#34D399" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+  <text x="780" y="378" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94A3B8">Approved</text>
+
+  <!-- Done → Reopened: "Bug found" -->
+  <path d="M700,457 Q670,457 620,457" fill="none" stroke="#F87171" stroke-width="1.2" marker-end="url(#arrow-red)"/>
+  <text x="660" y="448" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Bug found</text>
+
+  <!-- Reopened → In Progress: "Start rework" -->
+  <path d="M510,430 Q490,370 480,335" fill="none" stroke="#6C63FF" stroke-width="1.2" marker-end="url(#arrow-violet)"/>
+  <text x="515" y="390" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94A3B8">Start rework</text>
+
+  <!-- Done → End: "Archived" -->
+  <path d="M830,485 Q858,530 874,566" fill="none" stroke="#34D399" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+  <text x="868" y="530" text-anchor="start" font-family="sans-serif" font-size="9" fill="#94A3B8">Archived</text>
+
+  <!-- Cancelled → End: "Archived" -->
+  <path d="M240,470 Q560,550 866,580" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#arrow-dark)"/>
+  <text x="540" y="540" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#94A3B8">Archived</text>
+
+  <!-- ==================== LEGEND ==================== -->
+  <rect x="20" y="590" width="280" height="45" rx="8" fill="#12141A" stroke="#2A2D35" stroke-width="1"/>
+  <text x="35" y="608" font-family="sans-serif" font-size="9" font-weight="600" fill="#F1F5F9">Legend:</text>
+  <circle cx="100" cy="605" r="4" fill="#6C63FF"/><text x="108" y="608" font-family="sans-serif" font-size="8" fill="#94A3B8">Start</text>
+  <circle cx="150" cy="605" r="5" fill="none" stroke="#34D399" stroke-width="1.5"/><circle cx="150" cy="605" r="2.5" fill="#34D399"/><text x="158" y="608" font-family="sans-serif" font-size="8" fill="#94A3B8">End</text>
+  <line x1="195" y1="605" x2="220" y2="605" stroke="#94A3B8" stroke-width="1.2"/><text x="225" y="608" font-family="sans-serif" font-size="8" fill="#94A3B8">Transition</text>
+  <line x1="35" y1="625" x2="60" y2="625" stroke="#475569" stroke-width="1.2" stroke-dasharray="5,3"/><text x="65" y="628" font-family="sans-serif" font-size="8" fill="#94A3B8">Terminal path</text>
+</svg>

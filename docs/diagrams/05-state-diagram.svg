@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 800" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <filter id="s5">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="800" rx="16" fill="#0B0D11"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" fill="#F1F5F9" font-size="22" font-weight="800" font-family="Plus Jakarta Sans, Inter, sans-serif">State Diagrams</text>
+  <text x="550" y="58" text-anchor="middle" fill="#94A3B8" font-size="12">Lifecycle states and transitions for Tasks, Projects, and Timer</text>
+
+  <!-- ===== TASK STATE MACHINE ===== -->
+  <rect x="30" y="76" width="520" height="340" rx="14" fill="#12141A" stroke="#34D399" stroke-width="1" filter="url(#s5)"/>
+  <text x="290" y="100" text-anchor="middle" fill="#34D399" font-size="14" font-weight="700">Task State Machine</text>
+
+  <!-- States -->
+  <circle cx="80" cy="140" r="8" fill="#6C63FF"/>
+  <text x="80" y="160" text-anchor="middle" fill="#475569" font-size="9">[start]</text>
+
+  <rect x="130" y="126" width="70" height="28" rx="8" fill="#94A3B815" stroke="#94A3B8"/>
+  <text x="165" y="144" text-anchor="middle" fill="#94A3B8" font-size="10" font-weight="600">To Do</text>
+
+  <rect x="260" y="126" width="90" height="28" rx="8" fill="#6C63FF15" stroke="#6C63FF"/>
+  <text x="305" y="144" text-anchor="middle" fill="#6C63FF" font-size="10" font-weight="600">In Progress</text>
+
+  <rect x="410" y="126" width="80" height="28" rx="8" fill="#FBBF2415" stroke="#FBBF24"/>
+  <text x="450" y="144" text-anchor="middle" fill="#FBBF24" font-size="10" font-weight="600">In Review</text>
+
+  <rect x="350" y="195" width="65" height="28" rx="8" fill="#34D39915" stroke="#34D399"/>
+  <text x="382" y="213" text-anchor="middle" fill="#34D399" font-size="10" font-weight="600">Done</text>
+
+  <rect x="130" y="195" width="75" height="28" rx="8" fill="#60A5FA15" stroke="#60A5FA"/>
+  <text x="167" y="213" text-anchor="middle" fill="#60A5FA" font-size="10" font-weight="600">On Hold</text>
+
+  <rect x="130" y="265" width="80" height="28" rx="8" fill="#F8717115" stroke="#F87171"/>
+  <text x="170" y="283" text-anchor="middle" fill="#F87171" font-size="10" font-weight="600">Cancelled</text>
+
+  <rect x="350" y="265" width="80" height="28" rx="8" fill="#C084FC15" stroke="#C084FC"/>
+  <text x="390" y="283" text-anchor="middle" fill="#C084FC" font-size="10" font-weight="600">Reopened</text>
+
+  <circle cx="480" cy="310" r="6" fill="#34D399" stroke="#0B0D11" stroke-width="2"/>
+  <circle cx="480" cy="310" r="10" fill="none" stroke="#34D399"/>
+  <text x="480" y="330" text-anchor="middle" fill="#475569" font-size="9">[end]</text>
+
+  <!-- Transition arrows -->
+  <line x1="88" y1="140" x2="128" y2="140" stroke="#94A3B8" stroke-width="1"/>
+  <polygon points="128,140 122,137 122,143" fill="#94A3B8"/>
+
+  <line x1="200" y1="140" x2="258" y2="140" stroke="#6C63FF" stroke-width="1"/>
+  <polygon points="258,140 252,137 252,143" fill="#6C63FF"/>
+  <text x="228" y="134" text-anchor="middle" fill="#475569" font-size="7">Start work</text>
+
+  <line x1="350" y1="140" x2="408" y2="140" stroke="#FBBF24" stroke-width="1"/>
+  <polygon points="408,140 402,137 402,143" fill="#FBBF24"/>
+  <text x="378" y="134" text-anchor="middle" fill="#475569" font-size="7">Submit</text>
+
+  <line x1="450" y1="154" x2="400" y2="195" stroke="#34D399" stroke-width="1"/>
+  <polygon points="400,195 406,190 402,198" fill="#34D399"/>
+  <text x="438" y="178" fill="#475569" font-size="7">Approved</text>
+
+  <path d="M 410 148 Q 380 170 310 150" fill="none" stroke="#F87171" stroke-width="1"/>
+  <polygon points="310,150 316,148 314,154" fill="#F87171"/>
+  <text x="355" y="168" fill="#F87171" font-size="7">Changes req.</text>
+
+  <line x1="300" y1="154" x2="190" y2="195" stroke="#60A5FA" stroke-width="1"/>
+  <polygon points="190,195 194,189 198,196" fill="#60A5FA"/>
+  <text x="240" y="178" fill="#475569" font-size="7">Pause</text>
+
+  <line x1="190" y1="195" x2="280" y2="154" stroke="#6C63FF" stroke-width="1"/>
+  <text x="225" y="169" fill="#475569" font-size="7">Resume</text>
+
+  <line x1="165" y1="223" x2="165" y2="265" stroke="#F87171" stroke-width="1"/>
+  <polygon points="165,265 162,259 168,259" fill="#F87171"/>
+
+  <line x1="382" y1="223" x2="382" y2="265" stroke="#C084FC" stroke-width="1"/>
+  <polygon points="382,265 379,259 385,259" fill="#C084FC"/>
+  <text x="395" y="248" fill="#475569" font-size="7">Bug found</text>
+
+  <line x1="415" y1="295" x2="430" y2="310" stroke="#34D399" stroke-width="1"/>
+  <line x1="210" y1="285" x2="430" y2="310" stroke="#34D399" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+
+  <!-- ===== PROJECT STATE MACHINE ===== -->
+  <rect x="570" y="76" width="500" height="340" rx="14" fill="#12141A" stroke="#6C63FF" stroke-width="1" filter="url(#s5)"/>
+  <text x="820" y="100" text-anchor="middle" fill="#6C63FF" font-size="14" font-weight="700">Project State Machine</text>
+
+  <circle cx="620" cy="140" r="8" fill="#6C63FF"/>
+
+  <rect x="660" y="126" width="75" height="28" rx="8" fill="#94A3B815" stroke="#94A3B8"/>
+  <text x="697" y="144" text-anchor="middle" fill="#94A3B8" font-size="10" font-weight="600">Planning</text>
+
+  <rect x="790" y="126" width="70" height="28" rx="8" fill="#60A5FA15" stroke="#60A5FA"/>
+  <text x="825" y="144" text-anchor="middle" fill="#60A5FA" font-size="10" font-weight="600">Active</text>
+
+  <rect x="700" y="195" width="80" height="28" rx="8" fill="#34D39915" stroke="#34D399"/>
+  <text x="740" y="213" text-anchor="middle" fill="#34D399" font-size="10" font-weight="600">On Track</text>
+
+  <rect x="820" y="195" width="70" height="28" rx="8" fill="#FBBF2415" stroke="#FBBF24"/>
+  <text x="855" y="213" text-anchor="middle" fill="#FBBF24" font-size="10" font-weight="600">At Risk</text>
+
+  <rect x="930" y="195" width="70" height="28" rx="8" fill="#F8717115" stroke="#F87171"/>
+  <text x="965" y="213" text-anchor="middle" fill="#F87171" font-size="10" font-weight="600">Behind</text>
+
+  <rect x="810" y="265" width="90" height="28" rx="8" fill="#34D39915" stroke="#34D399"/>
+  <text x="855" y="283" text-anchor="middle" fill="#34D399" font-size="10" font-weight="600">Completed</text>
+
+  <rect x="660" y="265" width="70" height="28" rx="8" fill="#47556915" stroke="#475569"/>
+  <text x="695" y="283" text-anchor="middle" fill="#475569" font-size="10" font-weight="600">Paused</text>
+
+  <rect x="930" y="265" width="80" height="28" rx="8" fill="#47556915" stroke="#475569"/>
+  <text x="970" y="283" text-anchor="middle" fill="#475569" font-size="10" font-weight="600">Archived</text>
+
+  <!-- Project transitions -->
+  <line x1="628" y1="140" x2="658" y2="140" stroke="#94A3B8" stroke-width="1"/>
+  <line x1="735" y1="140" x2="788" y2="140" stroke="#60A5FA" stroke-width="1"/>
+  <polygon points="788,140 782,137 782,143" fill="#60A5FA"/>
+
+  <line x1="825" y1="154" x2="760" y2="195" stroke="#34D399" stroke-width="1"/>
+  <line x1="825" y1="154" x2="855" y2="195" stroke="#FBBF24" stroke-width="1"/>
+  <line x1="825" y1="154" x2="950" y2="195" stroke="#F87171" stroke-width="1"/>
+
+  <path d="M 780 209 Q 800 209 818 209" fill="none" stroke="#FBBF24" stroke-width="1"/>
+  <path d="M 890 209 Q 910 209 928 209" fill="none" stroke="#F87171" stroke-width="1"/>
+
+  <line x1="740" y1="223" x2="830" y2="265" stroke="#34D399" stroke-width="1"/>
+  <line x1="855" y1="223" x2="855" y2="265" stroke="#34D399" stroke-width="1"/>
+  <line x1="965" y1="223" x2="880" y2="265" stroke="#34D399" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <line x1="900" y1="279" x2="928" y2="279" stroke="#475569" stroke-width="1"/>
+
+  <line x1="790" y1="148" x2="720" y2="265" stroke="#475569" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+  <text x="745" y="210" fill="#475569" font-size="7">Freeze</text>
+
+  <!-- ===== TIMER STATE MACHINE ===== -->
+  <rect x="30" y="436" width="1040" height="340" rx="14" fill="#12141A" stroke="#60A5FA" stroke-width="1" filter="url(#s5)"/>
+  <text x="550" y="460" text-anchor="middle" fill="#60A5FA" font-size="14" font-weight="700">Timer State Machine</text>
+
+  <!-- Timer states -->
+  <circle cx="80" cy="520" r="8" fill="#6C63FF"/>
+
+  <rect x="130" y="505" width="80" height="34" rx="10" fill="#94A3B815" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="170" y="526" text-anchor="middle" fill="#94A3B8" font-size="11" font-weight="600">Idle</text>
+
+  <rect x="310" y="505" width="110" height="34" rx="10" fill="#34D39915" stroke="#34D399" stroke-width="1.5"/>
+  <text x="365" y="526" text-anchor="middle" fill="#34D399" font-size="11" font-weight="600">Running</text>
+
+  <rect x="520" y="505" width="90" height="34" rx="10" fill="#FBBF2415" stroke="#FBBF24" stroke-width="1.5"/>
+  <text x="565" y="526" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="600">Paused</text>
+
+  <rect x="720" y="505" width="90" height="34" rx="10" fill="#F8717115" stroke="#F87171" stroke-width="1.5"/>
+  <text x="765" y="526" text-anchor="middle" fill="#F87171" font-size="11" font-weight="600">Stopped</text>
+
+  <rect x="720" y="590" width="90" height="34" rx="10" fill="#6C63FF15" stroke="#6C63FF" stroke-width="1.5"/>
+  <text x="765" y="611" text-anchor="middle" fill="#6C63FF" font-size="11" font-weight="600">Saving</text>
+
+  <rect x="520" y="590" width="90" height="34" rx="10" fill="#F8717115" stroke="#F87171" stroke-width="1"/>
+  <text x="565" y="611" text-anchor="middle" fill="#F87171" font-size="10">Error</text>
+
+  <!-- Timer transitions -->
+  <line x1="88" y1="520" x2="128" y2="520" stroke="#94A3B8" stroke-width="1"/>
+
+  <line x1="210" y1="520" x2="308" y2="520" stroke="#34D399" stroke-width="1.5"/>
+  <polygon points="308,520 302,517 302,523" fill="#34D399"/>
+  <text x="258" y="514" text-anchor="middle" fill="#34D399" font-size="9">Start</text>
+
+  <line x1="420" y1="520" x2="518" y2="520" stroke="#FBBF24" stroke-width="1.5"/>
+  <polygon points="518,520 512,517 512,523" fill="#FBBF24"/>
+  <text x="468" y="514" text-anchor="middle" fill="#FBBF24" font-size="9">Pause</text>
+
+  <path d="M 520 530 Q 468 555 420 530" fill="none" stroke="#34D399" stroke-width="1.5"/>
+  <polygon points="420,530 426,528 426,534" fill="#34D399"/>
+  <text x="470" y="548" text-anchor="middle" fill="#34D399" font-size="9">Resume</text>
+
+  <line x1="370" y1="539" x2="720" y2="520" stroke="#F87171" stroke-width="1.5"/>
+  <polygon points="720,520 714,517 714,523" fill="#F87171"/>
+  <text x="545" y="540" fill="#F87171" font-size="9">Stop</text>
+
+  <line x1="610" y1="525" x2="720" y2="525" stroke="#F87171" stroke-width="1.5"/>
+  <polygon points="720,525 714,522 714,528" fill="#F87171"/>
+  <text x="662" y="540" fill="#F87171" font-size="9">Stop</text>
+
+  <line x1="765" y1="539" x2="765" y2="588" stroke="#6C63FF" stroke-width="1.5"/>
+  <polygon points="765,588 762,582 768,582" fill="#6C63FF"/>
+  <text x="778" y="567" fill="#6C63FF" font-size="9">Auto-save</text>
+
+  <line x1="720" y1="607" x2="612" y2="607" stroke="#F87171" stroke-width="1"/>
+  <polygon points="612,607 618,604 618,610" fill="#F87171"/>
+  <text x="665" y="601" text-anchor="middle" fill="#F87171" font-size="8">Failed</text>
+
+  <path d="M 520 600 Q 400 600 330 560 Q 260 530 210 525" fill="none" stroke="#6C63FF" stroke-width="1" stroke-dasharray="3 3"/>
+  <polygon points="210,525 216,523 216,529" fill="#6C63FF"/>
+  <text x="350" y="595" fill="#475569" font-size="8">Discard</text>
+
+  <path d="M 765 624 Q 765 680 280 680 Q 170 680 170 545" fill="none" stroke="#34D399" stroke-width="1"/>
+  <polygon points="170,545 167,551 173,551" fill="#34D399"/>
+  <text x="500" y="674" fill="#34D399" font-size="9">Entry saved → back to Idle</text>
+
+  <!-- Ticking loop inside Running -->
+  <path d="M 365 500 Q 365 485 385 485 Q 405 485 405 500" fill="none" stroke="#34D399" stroke-width="1"/>
+  <polygon points="405,500 402,494 408,494" fill="#34D399"/>
+  <text x="385" y="480" text-anchor="middle" fill="#34D399" font-size="8">Tick 1s</text>
+
+  <!-- Legend -->
+  <rect x="80" y="710" width="940" height="48" rx="8" fill="#181B22" stroke="#2A2D35"/>
+  <circle cx="100" cy="735" r="6" fill="#6C63FF"/>
+  <text x="114" y="739" fill="#94A3B8" font-size="9">Start</text>
+  <circle cx="160" cy="735" r="5" fill="#34D399" stroke="#0B0D11" stroke-width="2"/>
+  <circle cx="160" cy="735" r="8" fill="none" stroke="#34D399"/>
+  <text x="176" y="739" fill="#94A3B8" font-size="9">End</text>
+  <rect x="220" y="728" width="50" height="14" rx="6" fill="#34D39915" stroke="#34D399"/>
+  <text x="280" y="739" fill="#94A3B8" font-size="9">State node</text>
+  <line x1="340" y1="735" x2="380" y2="735" stroke="#94A3B8" stroke-width="1.5"/>
+  <polygon points="380,735 374,732 374,738" fill="#94A3B8"/>
+  <text x="395" y="739" fill="#94A3B8" font-size="9">Transition</text>
+  <text x="500" y="739" fill="#475569" font-size="9">Colors: Green=On Track/Running | Yellow=At Risk/Paused | Red=Behind/Stopped | Blue=Active/Saving | Gray=Idle</text>
+</svg>

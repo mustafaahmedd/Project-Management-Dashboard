@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700" font-family="sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 3.5 L 0 7 z" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-yellow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 3.5 L 0 7 z" fill="#FBBF24"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 3.5 L 0 7 z" fill="#F87171"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#0B0D11" rx="0"/>
+
+  <!-- Title -->
+  <text x="500" y="28" text-anchor="middle" fill="#F1F5F9" font-size="18" font-weight="700" letter-spacing="0.5">ProjectPulse — System Architecture</text>
+  <text x="500" y="44" text-anchor="middle" fill="#94A3B8" font-size="11">Component Diagram</text>
+
+  <!-- ==================== CLIENT CONTAINER ==================== -->
+  <rect x="30" y="55" width="940" height="490" rx="10" fill="none" stroke="#2A2D35" stroke-width="1.5"/>
+  <text x="50" y="73" fill="#94A3B8" font-size="11" font-weight="600" letter-spacing="1" text-transform="uppercase">CLIENT (BROWSER)</text>
+
+  <!-- ===== 1. ROUTING LAYER ===== -->
+  <rect x="50" y="82" width="900" height="42" rx="8" fill="#12141A" stroke="#6C63FF" stroke-width="1.2"/>
+  <text x="70" y="100" fill="#6C63FF" font-size="12" font-weight="700">React Router v6</text>
+  <rect x="220" y="90" width="110" height="24" rx="12" fill="#1a1730" stroke="#6C63FF" stroke-width="0.8"/>
+  <text x="275" y="106" text-anchor="middle" fill="#F1F5F9" font-size="10">BrowserRouter</text>
+  <rect x="340" y="90" width="120" height="24" rx="12" fill="#1a1730" stroke="#6C63FF" stroke-width="0.8"/>
+  <text x="400" y="106" text-anchor="middle" fill="#F1F5F9" font-size="10">Route Definitions</text>
+
+  <!-- Arrow: Router -> Layout -->
+  <line x1="500" y1="124" x2="500" y2="137" stroke="#94A3B8" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ===== 2. LAYOUT LAYER ===== -->
+  <rect x="50" y="140" width="900" height="42" rx="8" fill="#12141A" stroke="#2A2D35" stroke-width="1.2"/>
+  <text x="70" y="158" fill="#94A3B8" font-size="12" font-weight="700">Layout Layer</text>
+  <rect x="220" y="148" width="90" height="24" rx="12" fill="#181B22" stroke="#2A2D35" stroke-width="0.8"/>
+  <text x="265" y="164" text-anchor="middle" fill="#F1F5F9" font-size="10">AppLayout</text>
+  <rect x="320" y="148" width="75" height="24" rx="12" fill="#181B22" stroke="#2A2D35" stroke-width="0.8"/>
+  <text x="357" y="164" text-anchor="middle" fill="#F1F5F9" font-size="10">Sidebar</text>
+  <rect x="405" y="148" width="95" height="24" rx="12" fill="#181B22" stroke="#2A2D35" stroke-width="0.8"/>
+  <text x="452" y="164" text-anchor="middle" fill="#F1F5F9" font-size="10">PageHeader</text>
+
+  <!-- Arrow: Layout -> Pages -->
+  <line x1="500" y1="182" x2="500" y2="195" stroke="#94A3B8" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ===== 3. PAGE COMPONENTS ===== -->
+  <rect x="50" y="198" width="900" height="62" rx="8" fill="#12141A" stroke="#918AFF" stroke-width="1.2"/>
+  <text x="70" y="218" fill="#918AFF" font-size="12" font-weight="700">Page Components</text>
+
+  <!-- Page pills - row 1 -->
+  <rect x="65" y="228" width="82" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="106" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Dashboard</text>
+
+  <rect x="155" y="228" width="72" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="191" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Projects</text>
+
+  <rect x="235" y="228" width="58" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="264" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Tasks</text>
+
+  <rect x="301" y="228" width="72" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="337" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Calendar</text>
+
+  <rect x="381" y="228" width="95" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="428" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">TimeTracking</text>
+
+  <rect x="484" y="228" width="82" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="525" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Milestones</text>
+
+  <rect x="574" y="228" width="78" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="613" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Analytics</text>
+
+  <rect x="660" y="228" width="62" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="691" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Profile</text>
+
+  <rect x="730" y="228" width="68" height="22" rx="11" fill="#1e1a30" stroke="#918AFF" stroke-width="0.7"/>
+  <text x="764" y="243" text-anchor="middle" fill="#F1F5F9" font-size="9">Settings</text>
+
+  <!-- Arrows: Pages -> Shared UI and Pages -> State -->
+  <!-- Pages -> Shared UI (left branch) -->
+  <line x1="350" y1="260" x2="350" y2="275" stroke="#94A3B8" stroke-width="1" marker-end="url(#arrow)"/>
+  <!-- Pages -> State (right branch) -->
+  <line x1="650" y1="260" x2="650" y2="355" stroke="#FBBF24" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-yellow)"/>
+
+  <!-- ===== 4. SHARED UI ===== -->
+  <rect x="50" y="278" width="560" height="52" rx="8" fill="#12141A" stroke="#34D399" stroke-width="1.2"/>
+  <text x="70" y="298" fill="#34D399" font-size="12" font-weight="700">Shared UI Components</text>
+
+  <rect x="65" y="305" width="72" height="20" rx="10" fill="#0f1f1a" stroke="#34D399" stroke-width="0.7"/>
+  <text x="101" y="319" text-anchor="middle" fill="#F1F5F9" font-size="9">StatCard</text>
+
+  <rect x="145" y="305" width="85" height="20" rx="10" fill="#0f1f1a" stroke="#34D399" stroke-width="0.7"/>
+  <text x="187" y="319" text-anchor="middle" fill="#F1F5F9" font-size="9">FormDialog</text>
+
+  <rect x="238" y="305" width="105" height="20" rx="10" fill="#0f1f1a" stroke="#34D399" stroke-width="0.7"/>
+  <text x="290" y="319" text-anchor="middle" fill="#F1F5F9" font-size="9">ConfirmDialog</text>
+
+  <rect x="351" y="305" width="120" height="20" rx="10" fill="#0f1f1a" stroke="#34D399" stroke-width="0.7"/>
+  <text x="411" y="319" text-anchor="middle" fill="#F1F5F9" font-size="9">PlaceholderSection</text>
+
+  <rect x="479" y="305" width="62" height="20" rx="10" fill="#0f1f1a" stroke="#34D399" stroke-width="0.7"/>
+  <text x="510" y="319" text-anchor="middle" fill="#F1F5F9" font-size="9">Charts</text>
+
+  <!-- ===== 5. STATE MANAGEMENT ===== -->
+  <rect x="50" y="358" width="900" height="52" rx="8" fill="#12141A" stroke="#FBBF24" stroke-width="1.2"/>
+  <text x="70" y="378" fill="#FBBF24" font-size="12" font-weight="700">State Management (Context API)</text>
+
+  <rect x="65" y="385" width="110" height="20" rx="10" fill="#1f1a0f" stroke="#FBBF24" stroke-width="0.7"/>
+  <text x="120" y="399" text-anchor="middle" fill="#F1F5F9" font-size="9">ProjectContext</text>
+
+  <rect x="185" y="385" width="95" height="20" rx="10" fill="#1f1a0f" stroke="#FBBF24" stroke-width="0.7"/>
+  <text x="232" y="399" text-anchor="middle" fill="#F1F5F9" font-size="9">TaskContext</text>
+
+  <rect x="290" y="385" width="95" height="20" rx="10" fill="#1f1a0f" stroke="#FBBF24" stroke-width="0.7"/>
+  <text x="337" y="399" text-anchor="middle" fill="#F1F5F9" font-size="9">TimeContext</text>
+
+  <rect x="395" y="385" width="120" height="20" rx="10" fill="#1f1a0f" stroke="#FBBF24" stroke-width="0.7"/>
+  <text x="455" y="399" text-anchor="middle" fill="#F1F5F9" font-size="9">MilestoneContext</text>
+
+  <!-- ===== 6. STYLING LAYER ===== -->
+  <rect x="50" y="438" width="900" height="46" rx="8" fill="#12141A" stroke="#60A5FA" stroke-width="1.2"/>
+  <text x="70" y="458" fill="#60A5FA" font-size="12" font-weight="700">Styling</text>
+
+  <rect x="150" y="450" width="90" height="20" rx="10" fill="#0f1520" stroke="#60A5FA" stroke-width="0.7"/>
+  <text x="195" y="464" text-anchor="middle" fill="#F1F5F9" font-size="9">Tailwind CSS</text>
+
+  <rect x="250" y="450" width="90" height="20" rx="10" fill="#0f1520" stroke="#60A5FA" stroke-width="0.7"/>
+  <text x="295" y="464" text-anchor="middle" fill="#F1F5F9" font-size="9">Material UI</text>
+
+  <rect x="350" y="450" width="105" height="20" rx="10" fill="#0f1520" stroke="#60A5FA" stroke-width="0.7"/>
+  <text x="402" y="464" text-anchor="middle" fill="#F1F5F9" font-size="9">Framer Motion</text>
+
+  <rect x="465" y="450" width="85" height="20" rx="10" fill="#0f1520" stroke="#60A5FA" stroke-width="0.7"/>
+  <text x="507" y="464" text-anchor="middle" fill="#F1F5F9" font-size="9">darkTheme</text>
+
+  <!-- ==================== BACKEND CONTAINER (PLANNED) ==================== -->
+  <!-- Arrow: State -> Backend -->
+  <line x1="500" y1="545" x2="500" y2="570" stroke="#F87171" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow-red)"/>
+
+  <rect x="30" y="573" width="940" height="58" rx="10" fill="none" stroke="#F87171" stroke-width="1.5" stroke-dasharray="8,5"/>
+  <text x="50" y="591" fill="#F87171" font-size="11" font-weight="600" letter-spacing="1">BACKEND (PLANNED)</text>
+
+  <rect x="65" y="599" width="78" height="22" rx="11" fill="#1a0f0f" stroke="#F87171" stroke-width="0.7" stroke-dasharray="4,3"/>
+  <text x="104" y="614" text-anchor="middle" fill="#F1F5F9" font-size="9">REST API</text>
+
+  <rect x="153" y="599" width="95" height="22" rx="11" fill="#1a0f0f" stroke="#F87171" stroke-width="0.7" stroke-dasharray="4,3"/>
+  <text x="200" y="614" text-anchor="middle" fill="#F1F5F9" font-size="9">Auth Service</text>
+
+  <rect x="258" y="599" width="80" height="22" rx="11" fill="#1a0f0f" stroke="#F87171" stroke-width="0.7" stroke-dasharray="4,3"/>
+  <text x="298" y="614" text-anchor="middle" fill="#F1F5F9" font-size="9">Database</text>
+
+  <rect x="348" y="599" width="95" height="22" rx="11" fill="#1a0f0f" stroke="#F87171" stroke-width="0.7" stroke-dasharray="4,3"/>
+  <text x="395" y="614" text-anchor="middle" fill="#F1F5F9" font-size="9">File Storage</text>
+
+  <!-- ==================== FLOW ARROWS (additional) ==================== -->
+
+  <!-- Vertical connector: Shared UI layer bottom to State top (left side) -->
+  <line x1="300" y1="330" x2="300" y2="355" stroke="#94A3B8" stroke-width="1" stroke-opacity="0.4"/>
+
+  <!-- ==================== LEGEND ==================== -->
+  <rect x="660" y="278" width="280" height="60" rx="8" fill="#12141A" stroke="#2A2D35" stroke-width="0.8"/>
+  <text x="675" y="294" fill="#F1F5F9" font-size="10" font-weight="600">Legend</text>
+
+  <line x1="675" y1="306" x2="700" y2="306" stroke="#94A3B8" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="708" y="310" fill="#94A3B8" font-size="9">Data flow</text>
+
+  <line x1="770" y1="306" x2="795" y2="306" stroke="#FBBF24" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="803" y="310" fill="#94A3B8" font-size="9">State binding</text>
+
+  <line x1="675" y1="326" x2="700" y2="326" stroke="#F87171" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <text x="708" y="330" fill="#94A3B8" font-size="9">Planned</text>
+
+  <rect x="770" y="318" width="14" height="14" rx="3" fill="#12141A" stroke="#34D399" stroke-width="1"/>
+  <text x="790" y="330" fill="#94A3B8" font-size="9">Component group</text>
+
+  <!-- ==================== TECH BADGES (bottom-right) ==================== -->
+  <text x="950" y="688" text-anchor="end" fill="#2A2D35" font-size="9">React 18 + Vite 8 | ProjectPulse Architecture v1.0</text>
+</svg>

@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6C63FF"/>
+      <stop offset="100%" stop-color="#918AFF"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00D4AA"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="780" rx="16" fill="#0B0D11"/>
+
+  <!-- Title -->
+  <text x="550" y="42" text-anchor="middle" fill="#F1F5F9" font-size="22" font-weight="800" font-family="Plus Jakarta Sans, Inter, sans-serif" letter-spacing="-0.02em">System Architecture — Component Diagram</text>
+  <text x="550" y="64" text-anchor="middle" fill="#94A3B8" font-size="12">ProjectPulse Frontend Layers, State Management &amp; Backend</text>
+
+  <!-- CLIENT BOX -->
+  <rect x="30" y="82" width="720" height="668" rx="14" fill="none" stroke="#6C63FF" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.5"/>
+  <text x="50" y="104" fill="#6C63FF" font-size="12" font-weight="700" opacity="0.7">CLIENT — Browser</text>
+
+  <!-- ROUTING -->
+  <rect x="50" y="118" width="280" height="90" rx="12" fill="#12141A" stroke="#6C63FF" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="138" fill="#918AFF" font-size="10" font-weight="700" letter-spacing="0.05em">ROUTING — React Router v6</text>
+  <rect x="65" y="150" width="110" height="28" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="120" y="168" text-anchor="middle" fill="#F1F5F9" font-size="11">BrowserRouter</text>
+  <rect x="190" y="150" width="120" height="28" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="250" y="168" text-anchor="middle" fill="#F1F5F9" font-size="11">Route Definitions</text>
+
+  <!-- LAYOUT -->
+  <rect x="50" y="224" width="280" height="100" rx="12" fill="#12141A" stroke="#2A2D35" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="244" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.05em">LAYOUT LAYER</text>
+  <rect x="65" y="258" width="90" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="110" y="275" text-anchor="middle" fill="#F1F5F9" font-size="10">AppLayout</text>
+  <rect x="165" y="258" width="70" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="200" y="275" text-anchor="middle" fill="#F1F5F9" font-size="10">Sidebar</text>
+  <rect x="245" y="258" width="75" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="282" y="275" text-anchor="middle" fill="#F1F5F9" font-size="10">PageHeader</text>
+
+  <!-- PAGES -->
+  <rect x="50" y="340" width="680" height="120" rx="12" fill="#12141A" stroke="#2A2D35" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="360" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.05em">PAGE COMPONENTS</text>
+  <!-- Row 1 -->
+  <rect x="65" y="374" width="100" height="26" rx="6" fill="#181B22" stroke="#6C63FF40"/>
+  <text x="115" y="391" text-anchor="middle" fill="#918AFF" font-size="9">DashboardPage</text>
+  <rect x="175" y="374" width="90" height="26" rx="6" fill="#181B22" stroke="#6C63FF40"/>
+  <text x="220" y="391" text-anchor="middle" fill="#918AFF" font-size="9">ProjectsPage</text>
+  <rect x="275" y="374" width="80" height="26" rx="6" fill="#181B22" stroke="#34D39940"/>
+  <text x="315" y="391" text-anchor="middle" fill="#34D399" font-size="9">TasksPage</text>
+  <rect x="365" y="374" width="90" height="26" rx="6" fill="#181B22" stroke="#C084FC40"/>
+  <text x="410" y="391" text-anchor="middle" fill="#C084FC" font-size="9">CalendarPage</text>
+  <rect x="465" y="374" width="110" height="26" rx="6" fill="#181B22" stroke="#60A5FA40"/>
+  <text x="520" y="391" text-anchor="middle" fill="#60A5FA" font-size="9">TimeTrackingPage</text>
+  <!-- Row 2 -->
+  <rect x="65" y="410" width="100" height="26" rx="6" fill="#181B22" stroke="#FBBF2440"/>
+  <text x="115" y="427" text-anchor="middle" fill="#FBBF24" font-size="9">MilestonesPage</text>
+  <rect x="175" y="410" width="95" height="26" rx="6" fill="#181B22" stroke="#F8717140"/>
+  <text x="222" y="427" text-anchor="middle" fill="#F87171" font-size="9">AnalyticsPage</text>
+  <rect x="280" y="410" width="80" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="320" y="427" text-anchor="middle" fill="#94A3B8" font-size="9">ProfilePage</text>
+  <rect x="370" y="410" width="85" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="412" y="427" text-anchor="middle" fill="#94A3B8" font-size="9">SettingsPage</text>
+
+  <!-- SHARED UI -->
+  <rect x="350" y="118" width="380" height="90" rx="12" fill="#12141A" stroke="#34D399" stroke-width="1" filter="url(#shadow)"/>
+  <text x="360" y="138" fill="#34D399" font-size="10" font-weight="700" letter-spacing="0.05em">SHARED UI COMPONENTS</text>
+  <rect x="365" y="150" width="70" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="400" y="167" text-anchor="middle" fill="#F1F5F9" font-size="9">StatCard</text>
+  <rect x="445" y="150" width="100" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="495" y="167" text-anchor="middle" fill="#F1F5F9" font-size="9">PlaceholderSection</text>
+  <rect x="555" y="150" width="80" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="595" y="167" text-anchor="middle" fill="#F1F5F9" font-size="9">FormDialog</text>
+  <rect x="645" y="150" width="70" height="26" rx="6" fill="#181B22" stroke="#2A2D35"/>
+  <text x="680" y="167" text-anchor="middle" fill="#F1F5F9" font-size="9">Charts</text>
+
+  <!-- STATE MANAGEMENT -->
+  <rect x="50" y="478" width="680" height="90" rx="12" fill="#12141A" stroke="#FBBF24" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="498" fill="#FBBF24" font-size="10" font-weight="700" letter-spacing="0.05em">STATE MANAGEMENT — React Context</text>
+  <rect x="65" y="512" width="110" height="28" rx="6" fill="#181B22" stroke="#FBBF2430"/>
+  <text x="120" y="530" text-anchor="middle" fill="#FBBF24" font-size="10">ProjectContext</text>
+  <rect x="190" y="512" width="100" height="28" rx="6" fill="#181B22" stroke="#FBBF2430"/>
+  <text x="240" y="530" text-anchor="middle" fill="#FBBF24" font-size="10">TaskContext</text>
+  <rect x="305" y="512" width="100" height="28" rx="6" fill="#181B22" stroke="#FBBF2430"/>
+  <text x="355" y="530" text-anchor="middle" fill="#FBBF24" font-size="10">TimeContext</text>
+  <rect x="420" y="512" width="120" height="28" rx="6" fill="#181B22" stroke="#FBBF2430"/>
+  <text x="480" y="530" text-anchor="middle" fill="#FBBF24" font-size="10">MilestoneContext</text>
+  <rect x="555" y="512" width="130" height="28" rx="6" fill="#181B22" stroke="#FBBF2430"/>
+  <text x="620" y="530" text-anchor="middle" fill="#FBBF24" font-size="10">MUI ThemeProvider</text>
+
+  <!-- STYLING LAYER -->
+  <rect x="50" y="586" width="680" height="80" rx="12" fill="#12141A" stroke="#60A5FA" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="606" fill="#60A5FA" font-size="10" font-weight="700" letter-spacing="0.05em">STYLING LAYER</text>
+  <rect x="65" y="618" width="120" height="28" rx="6" fill="#181B22" stroke="#60A5FA30"/>
+  <text x="125" y="636" text-anchor="middle" fill="#60A5FA" font-size="10">Tailwind CSS v4</text>
+  <rect x="200" y="618" width="120" height="28" rx="6" fill="#181B22" stroke="#60A5FA30"/>
+  <text x="260" y="636" text-anchor="middle" fill="#60A5FA" font-size="10">Material UI v6</text>
+  <rect x="335" y="618" width="120" height="28" rx="6" fill="#181B22" stroke="#60A5FA30"/>
+  <text x="395" y="636" text-anchor="middle" fill="#60A5FA" font-size="10">Framer Motion</text>
+  <rect x="470" y="618" width="110" height="28" rx="6" fill="#181B22" stroke="#60A5FA30"/>
+  <text x="525" y="636" text-anchor="middle" fill="#60A5FA" font-size="10">darkTheme.js</text>
+
+  <!-- PERSISTENCE -->
+  <rect x="50" y="684" width="680" height="56" rx="12" fill="#12141A" stroke="#34D399" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="704" fill="#34D399" font-size="10" font-weight="700" letter-spacing="0.05em">PERSISTENCE</text>
+  <rect x="65" y="714" width="130" height="22" rx="6" fill="#34D39915" stroke="#34D39940"/>
+  <text x="130" y="729" text-anchor="middle" fill="#34D399" font-size="10">localStorage</text>
+  <text x="220" y="729" fill="#475569" font-size="10">→ Syncs on every state change</text>
+
+  <!-- BACKEND (PLANNED) -->
+  <rect x="780" y="82" width="290" height="668" rx="14" fill="#12141A" stroke="#2A2D35" stroke-width="1" stroke-dasharray="6 3" opacity="0.6" filter="url(#shadow)"/>
+  <text x="800" y="104" fill="#94A3B8" font-size="12" font-weight="700" opacity="0.6">BACKEND — Planned</text>
+
+  <rect x="800" y="130" width="250" height="50" rx="10" fill="#181B22" stroke="#2A2D35"/>
+  <text x="925" y="152" text-anchor="middle" fill="#94A3B8" font-size="12">REST / GraphQL API</text>
+  <text x="925" y="168" text-anchor="middle" fill="#475569" font-size="9">(Supabase / Express)</text>
+
+  <rect x="800" y="200" width="250" height="50" rx="10" fill="#181B22" stroke="#2A2D35"/>
+  <text x="925" y="222" text-anchor="middle" fill="#94A3B8" font-size="12">Auth Service</text>
+  <text x="925" y="238" text-anchor="middle" fill="#475569" font-size="9">(JWT / OAuth)</text>
+
+  <rect x="800" y="270" width="250" height="50" rx="10" fill="#181B22" stroke="#2A2D35"/>
+  <text x="925" y="292" text-anchor="middle" fill="#94A3B8" font-size="12">Database</text>
+  <text x="925" y="308" text-anchor="middle" fill="#475569" font-size="9">(PostgreSQL / MongoDB)</text>
+
+  <rect x="800" y="340" width="250" height="50" rx="10" fill="#181B22" stroke="#2A2D35"/>
+  <text x="925" y="362" text-anchor="middle" fill="#94A3B8" font-size="12">File Storage</text>
+  <text x="925" y="378" text-anchor="middle" fill="#475569" font-size="9">(S3 / Supabase Storage)</text>
+
+  <!-- Arrows: Routing → Layout -->
+  <line x1="190" y1="208" x2="190" y2="224" stroke="#6C63FF" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+  <!-- Layout → Pages -->
+  <line x1="190" y1="324" x2="390" y2="340" stroke="#94A3B8" stroke-width="1"/>
+  <!-- Pages → State -->
+  <line x1="390" y1="460" x2="390" y2="478" stroke="#FBBF24" stroke-width="1" opacity="0.6"/>
+  <!-- Pages → Shared UI -->
+  <line x1="540" y1="340" x2="540" y2="208" stroke="#34D399" stroke-width="1" opacity="0.5"/>
+  <!-- State → Persistence -->
+  <line x1="390" y1="568" x2="390" y2="586" stroke="#34D399" stroke-width="1" opacity="0.5"/>
+  <!-- Client → Backend (future) -->
+  <line x1="730" y1="525" x2="800" y2="155" stroke="#475569" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+  <text x="772" y="340" fill="#475569" font-size="9" transform="rotate(-70 772 340)">Future API calls</text>
+
+  <!-- Legend -->
+  <rect x="800" y="430" width="250" height="160" rx="10" fill="#181B22" stroke="#2A2D35"/>
+  <text x="820" y="454" fill="#F1F5F9" font-size="11" font-weight="700">Legend</text>
+  <rect x="820" y="466" width="12" height="12" rx="3" fill="#6C63FF"/>
+  <text x="840" y="477" fill="#94A3B8" font-size="10">Routing Layer</text>
+  <rect x="820" y="486" width="12" height="12" rx="3" fill="#34D399"/>
+  <text x="840" y="497" fill="#94A3B8" font-size="10">Shared UI + Persistence</text>
+  <rect x="820" y="506" width="12" height="12" rx="3" fill="#FBBF24"/>
+  <text x="840" y="517" fill="#94A3B8" font-size="10">State Management</text>
+  <rect x="820" y="526" width="12" height="12" rx="3" fill="#60A5FA"/>
+  <text x="840" y="537" fill="#94A3B8" font-size="10">Styling Layer</text>
+  <line x1="820" y1="553" x2="855" y2="553" stroke="#475569" stroke-dasharray="4 4"/>
+  <text x="863" y="557" fill="#94A3B8" font-size="10">Planned / Future</text>
+  <line x1="820" y1="573" x2="855" y2="573" stroke="#94A3B8"/>
+  <text x="863" y="577" fill="#94A3B8" font-size="10">Active Connection</text>
+</svg>

@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" font-family="Inter, system-ui, sans-serif">
+  <defs>
+    <filter id="s6">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="780" rx="16" fill="#0B0D11"/>
+
+  <!-- Title -->
+  <text x="600" y="38" text-anchor="middle" fill="#F1F5F9" font-size="22" font-weight="800" font-family="Plus Jakarta Sans, Inter, sans-serif">Class Diagram — Data Models</text>
+  <text x="600" y="58" text-anchor="middle" fill="#94A3B8" font-size="12">Core entities, attributes, relationships, and methods</text>
+
+  <!-- ===== USER ===== -->
+  <rect x="30" y="82" width="220" height="220" rx="12" fill="#12141A" stroke="#6C63FF" stroke-width="1.5" filter="url(#s6)"/>
+  <rect x="30" y="82" width="220" height="30" rx="12" fill="#6C63FF"/>
+  <rect x="30" y="100" width="220" height="12" fill="#6C63FF"/>
+  <text x="140" y="102" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">User</text>
+  <line x1="30" y1="140" x2="250" y2="140" stroke="#2A2D35"/>
+  <text x="42" y="130" fill="#94A3B8" font-size="9">+id: String</text>
+  <text x="42" y="156" fill="#94A3B8" font-size="9">+name: String</text>
+  <text x="42" y="170" fill="#94A3B8" font-size="9">+email: String</text>
+  <text x="42" y="184" fill="#94A3B8" font-size="9">+role: "employee" | "manager"</text>
+  <text x="42" y="198" fill="#94A3B8" font-size="9">+department: String</text>
+  <text x="42" y="212" fill="#94A3B8" font-size="9">+avatarUrl: String</text>
+  <text x="42" y="226" fill="#94A3B8" font-size="9">+joinedAt: Date</text>
+  <line x1="30" y1="236" x2="250" y2="236" stroke="#2A2D35"/>
+  <text x="42" y="254" fill="#6C63FF" font-size="9">+getFullName(): String</text>
+  <text x="42" y="268" fill="#6C63FF" font-size="9">+getInitials(): String</text>
+  <text x="42" y="282" fill="#6C63FF" font-size="9">+getActiveProjects(): Project[]</text>
+
+  <!-- ===== PROJECT ===== -->
+  <rect x="300" y="82" width="250" height="260" rx="12" fill="#12141A" stroke="#918AFF" stroke-width="1.5" filter="url(#s6)"/>
+  <rect x="300" y="82" width="250" height="30" rx="12" fill="#918AFF"/>
+  <rect x="300" y="100" width="250" height="12" fill="#918AFF"/>
+  <text x="425" y="102" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Project</text>
+  <line x1="300" y1="140" x2="550" y2="140" stroke="#2A2D35"/>
+  <text x="312" y="130" fill="#94A3B8" font-size="9">+id: String</text>
+  <text x="312" y="156" fill="#94A3B8" font-size="9">+name: String</text>
+  <text x="312" y="170" fill="#94A3B8" font-size="9">+description: String</text>
+  <text x="312" y="184" fill="#94A3B8" font-size="9">+color: String (hex)</text>
+  <text x="312" y="198" fill="#94A3B8" font-size="9">+status: ProjectStatus</text>
+  <text x="312" y="212" fill="#94A3B8" font-size="9">+startDate: Date</text>
+  <text x="312" y="226" fill="#94A3B8" font-size="9">+deadline: Date</text>
+  <text x="312" y="240" fill="#94A3B8" font-size="9">+ownerId: String</text>
+  <text x="312" y="254" fill="#94A3B8" font-size="9">+memberIds: String[]</text>
+  <line x1="300" y1="264" x2="550" y2="264" stroke="#2A2D35"/>
+  <text x="312" y="280" fill="#918AFF" font-size="9">+computeProgress(): Number</text>
+  <text x="312" y="294" fill="#918AFF" font-size="9">+isOverdue(): Boolean</text>
+  <text x="312" y="308" fill="#918AFF" font-size="9">+getDaysRemaining(): Number</text>
+  <text x="312" y="322" fill="#918AFF" font-size="9">+getTaskCount(): Number</text>
+
+  <!-- ===== TASK ===== -->
+  <rect x="600" y="82" width="260" height="290" rx="12" fill="#12141A" stroke="#34D399" stroke-width="1.5" filter="url(#s6)"/>
+  <rect x="600" y="82" width="260" height="30" rx="12" fill="#34D399"/>
+  <rect x="600" y="100" width="260" height="12" fill="#34D399"/>
+  <text x="730" y="102" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Task</text>
+  <line x1="600" y1="140" x2="860" y2="140" stroke="#2A2D35"/>
+  <text x="612" y="130" fill="#94A3B8" font-size="9">+id: String</text>
+  <text x="612" y="156" fill="#94A3B8" font-size="9">+title: String</text>
+  <text x="612" y="170" fill="#94A3B8" font-size="9">+status: TaskStatus</text>
+  <text x="612" y="184" fill="#94A3B8" font-size="9">+priority: "low"|"medium"|"high"|"critical"</text>
+  <text x="612" y="198" fill="#94A3B8" font-size="9">+projectId: String</text>
+  <text x="612" y="212" fill="#94A3B8" font-size="9">+assigneeId: String</text>
+  <text x="612" y="226" fill="#94A3B8" font-size="9">+deadline: Date</text>
+  <text x="612" y="240" fill="#94A3B8" font-size="9">+estimatedHours: Number</text>
+  <text x="612" y="254" fill="#94A3B8" font-size="9">+loggedHours: Number</text>
+  <text x="612" y="268" fill="#94A3B8" font-size="9">+subtasks: Subtask[]</text>
+  <text x="612" y="282" fill="#94A3B8" font-size="9">+createdAt: Date</text>
+  <line x1="600" y1="292" x2="860" y2="292" stroke="#2A2D35"/>
+  <text x="612" y="308" fill="#34D399" font-size="9">+isOverdue(): Boolean</text>
+  <text x="612" y="322" fill="#34D399" font-size="9">+getCompletionPercent(): Number</text>
+  <text x="612" y="336" fill="#34D399" font-size="9">+getRemainingHours(): Number</text>
+  <text x="612" y="350" fill="#34D399" font-size="9">+getSubtaskProgress(): Number</text>
+
+  <!-- ===== SUBTASK ===== -->
+  <rect x="920" y="82" width="220" height="135" rx="12" fill="#12141A" stroke="#C084FC" stroke-width="1.5" filter="url(#s6)"/>
+  <rect x="920" y="82" width="220" height="30" rx="12" fill="#C084FC"/>
+  <rect x="920" y="100" width="220" height="12" fill="#C084FC"/>
+  <text x="1030" y="102" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Subtask</text>
+  <line x1="920" y1="140" x2="1140" y2="140" stroke="#2A2D35"/>
+  <text x="932" y="130" fill="#94A3B8" font-size="9">+id: String</text>
+  <text x="932" y="156" fill="#94A3B8" font-size="9">+title: String</text>
+  <text x="932" y="170" fill="#94A3B8" font-size="9">+completed: Boolean</text>
+  <line x1="920" y1="180" x2="1140" y2="180" stroke="#2A2D35"/>
+  <text x="932" y="198" fill="#C084FC" font-size="9">+toggle(): void</text>
+
+  <!-- ===== TIME ENTRY ===== -->
+  <rect x="30" y="330" width="250" height="210" rx="12" fill="#12141A" stroke="#60A5FA" stroke-width="1.5" filter="url(#s6)"/>
+  <rect x="30" y="330" width="250" height="30" rx="12" fill="#60A5FA"/>
+  <rect x="30" y="348" width="250" height="12" fill="#60A5FA"/>
+  <text x="155" y="350" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">TimeEntry</text>
+  <line x1="30" y1="388" x2="280" y2="388" stroke="#2A2D35"/>
+  <text x="42" y="378" fill="#94A3B8" font-size="9">+id: String</text>
+  <text x="42" y="404" fill="#94A3B8" font-size="9">+taskId: String</text>
+  <text x="42" y="418" fill="#94A3B8" font-size="9">+projectId: String</text>
+  <text x="42" y="432" fill="#94A3B8" font-size="9">+userId: String</text>
+  <text x="42" y="446" fill="#94A3B8" font-size="9">+startTime: Date</text>
+  <text x="42" y="460" fill="#94A3B8" font-size="9">+endTime: Date</text>
+  <text x="42" y="474" fill="#94A3B8" font-size="9">+durationMinutes: Number</text>
+  <text x="42" y="488" fill="#94A3B8" font-size="9">+notes: String</text>
+  <line x1="30" y1="498" x2="280" y2="498" stroke="#2A2D35"/>
+  <text x="42" y="516" fill="#60A5FA" font-size="9">+getDurationFormatted(): String</text>
+
+  <!-- ===== MILESTONE ===== -->
+  <rect x="330" y="380" width="250" height="200" rx="12" fill="#12141A" stroke="#FBBF24" stroke-width="1.5" filter="url(#s6)"/>
+  <rect x="330" y="380" width="250" height="30" rx="12" fill="#FBBF24"/>
+  <rect x="330" y="398" width="250" height="12" fill="#FBBF24"/>
+  <text x="455" y="400" text-anchor="middle" fill="#0B0D11" font-size="13" font-weight="700">Milestone</text>
+  <line x1="330" y1="438" x2="580" y2="438" stroke="#2A2D35"/>
+  <text x="342" y="428" fill="#94A3B8" font-size="9">+id: String</text>
+  <text x="342" y="454" fill="#94A3B8" font-size="9">+title: String</text>
+  <text x="342" y="468" fill="#94A3B8" font-size="9">+projectId: String</text>
+  <text x="342" y="482" fill="#94A3B8" font-size="9">+targetDate: Date</text>
+  <text x="342" y="496" fill="#94A3B8" font-size="9">+status: MilestoneStatus</text>
+  <text x="342" y="510" fill="#94A3B8" font-size="9">+taskIds: String[]</text>
+  <line x1="330" y1="520" x2="580" y2="520" stroke="#2A2D35"/>
+  <text x="342" y="538" fill="#FBBF24" font-size="9">+computeProgress(): Number</text>
+  <text x="342" y="552" fill="#FBBF24" font-size="9">+isOverdue(): Boolean</text>
+  <text x="342" y="566" fill="#FBBF24" font-size="9">+getDaysRemaining(): Number</text>
+
+  <!-- ===== RELATIONSHIPS ===== -->
+  <!-- User 1→* Project -->
+  <line x1="250" y1="192" x2="300" y2="192" stroke="#6C63FF" stroke-width="1.5"/>
+  <text x="275" y="186" text-anchor="middle" fill="#6C63FF" font-size="8" font-weight="600">1 → *</text>
+  <text x="275" y="202" text-anchor="middle" fill="#475569" font-size="7">owns</text>
+
+  <!-- User 1→* Task -->
+  <path d="M 250 240 Q 430 410 600 240" fill="none" stroke="#6C63FF" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+  <text x="420" y="350" text-anchor="middle" fill="#475569" font-size="7">assigned to</text>
+
+  <!-- Project 1→* Task -->
+  <line x1="550" y1="212" x2="600" y2="212" stroke="#918AFF" stroke-width="1.5"/>
+  <text x="575" y="206" text-anchor="middle" fill="#918AFF" font-size="8" font-weight="600">1 → *</text>
+  <text x="575" y="222" text-anchor="middle" fill="#475569" font-size="7">contains</text>
+
+  <!-- Task 1→* Subtask -->
+  <line x1="860" y1="140" x2="920" y2="140" stroke="#34D399" stroke-width="1.5"/>
+  <text x="890" y="134" text-anchor="middle" fill="#34D399" font-size="8" font-weight="600">1 → *</text>
+  <text x="890" y="150" text-anchor="middle" fill="#475569" font-size="7">has</text>
+
+  <!-- Task 1→* TimeEntry -->
+  <path d="M 600 350 Q 400 400 280 420" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+  <text x="440" y="385" fill="#475569" font-size="7">tracked by (1→*)</text>
+
+  <!-- Project 1→* Milestone -->
+  <line x1="425" y1="342" x2="425" y2="380" stroke="#FBBF24" stroke-width="1.5"/>
+  <text x="440" y="364" fill="#FBBF24" font-size="8" font-weight="600">1 → *</text>
+
+  <!-- Milestone *→* Task -->
+  <path d="M 580 490 Q 620 490 660 420 Q 700 370 730 372" fill="none" stroke="#FBBF24" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+  <text x="640" y="440" fill="#475569" font-size="7">tracks (M→N)</text>
+
+  <!-- Enum Definitions -->
+  <rect x="630" y="420" width="530" height="170" rx="12" fill="#12141A" stroke="#2A2D35" filter="url(#s6)"/>
+  <text x="895" y="444" text-anchor="middle" fill="#F1F5F9" font-size="12" font-weight="700">Enum Definitions</text>
+
+  <text x="650" y="470" fill="#34D399" font-size="10" font-weight="600">TaskStatus:</text>
+  <text x="650" y="484" fill="#94A3B8" font-size="9">"todo" | "in_progress" | "in_review" | "done" | "on_hold" | "cancelled"</text>
+
+  <text x="650" y="506" fill="#918AFF" font-size="10" font-weight="600">ProjectStatus:</text>
+  <text x="650" y="520" fill="#94A3B8" font-size="9">"on_track" | "at_risk" | "behind" | "completed" | "paused" | "archived"</text>
+
+  <text x="650" y="542" fill="#F87171" font-size="10" font-weight="600">TaskPriority:</text>
+  <text x="650" y="556" fill="#94A3B8" font-size="9">"low" | "medium" | "high" | "critical"</text>
+
+  <text x="650" y="578" fill="#6C63FF" font-size="10" font-weight="600">UserRole:</text>
+  <text x="650" y="578" fill="#94A3B8" font-size="9" dx="80">"employee" | "manager" | "admin"</text>
+
+  <!-- Legend -->
+  <rect x="30" y="620" width="580" height="60" rx="10" fill="#181B22" stroke="#2A2D35"/>
+  <text x="50" y="642" fill="#F1F5F9" font-size="11" font-weight="700">Relationships</text>
+  <line x1="50" y1="660" x2="90" y2="660" stroke="#6C63FF" stroke-width="1.5"/>
+  <text x="98" y="664" fill="#94A3B8" font-size="9">1 → * (one-to-many)</text>
+  <line x1="220" y1="660" x2="260" y2="660" stroke="#FBBF24" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="268" y="664" fill="#94A3B8" font-size="9">References (FK)</text>
+  <text x="400" y="664" fill="#475569" font-size="9">Header color = entity accent</text>
+</svg>

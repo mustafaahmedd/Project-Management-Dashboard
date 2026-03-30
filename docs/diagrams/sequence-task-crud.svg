@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 900" width="1000" height="900" font-family="sans-serif">
+  <defs>
+    <marker id="arrowSolid" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#F1F5F9"/>
+    </marker>
+    <marker id="arrowDashed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrowSelf" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#918AFF"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="900" fill="#0B0D11" rx="0"/>
+
+  <!-- Title -->
+  <text x="500" y="32" text-anchor="middle" fill="#F1F5F9" font-size="18" font-weight="700" letter-spacing="-0.02em">ProjectPulse — Task CRUD Sequence Diagram</text>
+
+  <!-- ===== PARTICIPANTS ===== -->
+  <!-- X positions: 80, 260, 440, 660, 870 -->
+
+  <!-- 1. User -->
+  <rect x="30" y="50" width="100" height="38" rx="6" fill="#12141A" stroke="#6C63FF" stroke-width="1.5"/>
+  <circle cx="66" cy="62" r="6" fill="none" stroke="#6C63FF" stroke-width="1.2"/>
+  <text x="80" y="78" text-anchor="middle" fill="#F1F5F9" font-size="11" font-weight="600">User</text>
+
+  <!-- 2. TasksPage (UI) -->
+  <rect x="185" y="50" width="130" height="38" rx="6" fill="#12141A" stroke="#918AFF" stroke-width="1.5"/>
+  <text x="250" y="74" text-anchor="middle" fill="#F1F5F9" font-size="11" font-weight="600">TasksPage (UI)</text>
+
+  <!-- 3. TaskContext -->
+  <rect x="385" y="50" width="120" height="38" rx="6" fill="#12141A" stroke="#FBBF24" stroke-width="1.5"/>
+  <text x="445" y="74" text-anchor="middle" fill="#F1F5F9" font-size="11" font-weight="600">TaskContext</text>
+
+  <!-- 4. localStorage / API -->
+  <rect x="575" y="50" width="140" height="38" rx="6" fill="#12141A" stroke="#34D399" stroke-width="1.5"/>
+  <text x="645" y="74" text-anchor="middle" fill="#F1F5F9" font-size="11" font-weight="600">localStorage / API</text>
+
+  <!-- 5. DashboardPage -->
+  <rect x="790" y="50" width="130" height="38" rx="6" fill="#12141A" stroke="#60A5FA" stroke-width="1.5"/>
+  <text x="855" y="74" text-anchor="middle" fill="#F1F5F9" font-size="11" font-weight="600">DashboardPage</text>
+
+  <!-- ===== LIFELINES ===== -->
+  <line x1="80" y1="88" x2="80" y2="880" stroke="#2A2D35" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="250" y1="88" x2="250" y2="880" stroke="#2A2D35" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="445" y1="88" x2="445" y2="880" stroke="#2A2D35" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="645" y1="88" x2="645" y2="880" stroke="#2A2D35" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="855" y1="88" x2="855" y2="880" stroke="#2A2D35" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 1: CREATE TASK -->
+  <!-- ===================================================================== -->
+  <rect x="20" y="105" width="960" height="26" rx="4" fill="#181B22" stroke="#2A2D35" stroke-width="0.5"/>
+  <text x="500" y="122" text-anchor="middle" fill="#6C63FF" font-size="12" font-weight="700" letter-spacing="0.08em">CREATE TASK</text>
+
+  <!-- Row 1: User -> UI: Click "Add Task" -->
+  <line x1="80" y1="148" x2="244" y2="148" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="162" y="143" text-anchor="middle" fill="#F1F5F9" font-size="9.5">Click "Add Task"</text>
+
+  <!-- Row 2: UI -> UI: Open task creation modal (self-call) -->
+  <path d="M250,165 L290,165 L290,180 L256,180" fill="none" stroke="#918AFF" stroke-width="1.2" marker-end="url(#arrowSelf)"/>
+  <text x="310" y="170" fill="#94A3B8" font-size="9.5">Open task creation modal</text>
+
+  <!-- Row 3: User -> UI: Fill title, priority, deadline, project -->
+  <line x1="80" y1="198" x2="244" y2="198" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="162" y="193" text-anchor="middle" fill="#F1F5F9" font-size="9">Fill title, priority, deadline, project</text>
+
+  <!-- Row 4: UI -> Context: dispatch(createTask(taskData)) -->
+  <line x1="250" y1="218" x2="439" y2="218" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="345" y="213" text-anchor="middle" fill="#F1F5F9" font-size="9">dispatch(createTask(taskData))</text>
+
+  <!-- Row 5: Context -> Store: localStorage.setItem() -->
+  <line x1="445" y1="238" x2="639" y2="238" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="542" y="233" text-anchor="middle" fill="#F1F5F9" font-size="9">localStorage.setItem()</text>
+
+  <!-- Row 6: Store -> Context: Task created (dashed return) -->
+  <line x1="639" y1="258" x2="451" y2="258" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="542" y="253" text-anchor="middle" fill="#94A3B8" font-size="9">Task created</text>
+
+  <!-- Row 7: Context -> UI: State updated — new task in "To Do" (dashed return) -->
+  <line x1="439" y1="278" x2="256" y2="278" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="348" y="273" text-anchor="middle" fill="#94A3B8" font-size="9">State updated — new task in "To Do"</text>
+
+  <!-- Row 8: UI -> User: Task card appears in Kanban (dashed return) -->
+  <line x1="244" y1="298" x2="86" y2="298" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="162" y="293" text-anchor="middle" fill="#94A3B8" font-size="9">Task card appears in Kanban</text>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 2: MOVE TASK -->
+  <!-- ===================================================================== -->
+  <rect x="20" y="322" width="960" height="26" rx="4" fill="#181B22" stroke="#2A2D35" stroke-width="0.5"/>
+  <text x="500" y="339" text-anchor="middle" fill="#FBBF24" font-size="12" font-weight="700" letter-spacing="0.08em">MOVE TASK</text>
+
+  <!-- Row 1: User -> UI: Click "Move Forward" on task -->
+  <line x1="80" y1="365" x2="244" y2="365" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="162" y="360" text-anchor="middle" fill="#F1F5F9" font-size="9">Click "Move Forward" on task</text>
+
+  <!-- Row 2: UI -> Context: dispatch(moveTask(id, "in_progress")) -->
+  <line x1="250" y1="388" x2="439" y2="388" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="345" y="383" text-anchor="middle" fill="#F1F5F9" font-size="9">dispatch(moveTask(id, "in_progress"))</text>
+
+  <!-- Row 3: Context -> Store: Update status -->
+  <line x1="445" y1="411" x2="639" y2="411" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="542" y="406" text-anchor="middle" fill="#F1F5F9" font-size="9">Update status</text>
+
+  <!-- Row 4: Store -> Context: Updated (dashed) -->
+  <line x1="639" y1="434" x2="451" y2="434" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="542" y="429" text-anchor="middle" fill="#94A3B8" font-size="9">Updated</text>
+
+  <!-- Row 5: Context -> UI: Re-render Kanban columns (dashed) -->
+  <line x1="439" y1="457" x2="256" y2="457" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="348" y="452" text-anchor="middle" fill="#94A3B8" font-size="9">Re-render Kanban columns</text>
+
+  <!-- Row 6: Context -> Dashboard: Stats recomputed (dashed) -->
+  <line x1="445" y1="480" x2="849" y2="480" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="647" y="475" text-anchor="middle" fill="#94A3B8" font-size="9">Stats recomputed</text>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 3: DELETE TASK -->
+  <!-- ===================================================================== -->
+  <rect x="20" y="510" width="960" height="26" rx="4" fill="#181B22" stroke="#2A2D35" stroke-width="0.5"/>
+  <text x="500" y="527" text-anchor="middle" fill="#F87171" font-size="12" font-weight="700" letter-spacing="0.08em">DELETE TASK</text>
+
+  <!-- Row 1: User -> UI: Click "..." -> Delete -->
+  <line x1="80" y1="555" x2="244" y2="555" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="162" y="550" text-anchor="middle" fill="#F1F5F9" font-size="9.5">Click "..." &gt; Delete</text>
+
+  <!-- Row 2: UI -> UI: Show confirmation dialog (self-call) -->
+  <path d="M250,575 L290,575 L290,590 L256,590" fill="none" stroke="#918AFF" stroke-width="1.2" marker-end="url(#arrowSelf)"/>
+  <text x="310" y="580" fill="#94A3B8" font-size="9.5">Show confirmation dialog</text>
+
+  <!-- Row 3: User -> UI: Confirm delete -->
+  <line x1="80" y1="610" x2="244" y2="610" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="162" y="605" text-anchor="middle" fill="#F1F5F9" font-size="9.5">Confirm delete</text>
+
+  <!-- Row 4: UI -> Context: dispatch(deleteTask(id)) -->
+  <line x1="250" y1="635" x2="439" y2="635" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="345" y="630" text-anchor="middle" fill="#F1F5F9" font-size="9">dispatch(deleteTask(id))</text>
+
+  <!-- Row 5: Context -> Store: Remove entry -->
+  <line x1="445" y1="658" x2="639" y2="658" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="542" y="653" text-anchor="middle" fill="#F1F5F9" font-size="9">Remove entry</text>
+
+  <!-- Row 6: Store -> Context: Deleted (dashed) -->
+  <line x1="639" y1="681" x2="451" y2="681" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="542" y="676" text-anchor="middle" fill="#94A3B8" font-size="9">Deleted</text>
+
+  <!-- Row 7: Context -> UI: Task removed (dashed) -->
+  <line x1="439" y1="704" x2="256" y2="704" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="348" y="699" text-anchor="middle" fill="#94A3B8" font-size="9">Task removed</text>
+
+  <!-- Row 8: Context -> Dashboard: Stats updated (dashed) -->
+  <line x1="445" y1="727" x2="849" y2="727" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="647" y="722" text-anchor="middle" fill="#94A3B8" font-size="9">Stats updated</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="20" y="760" width="960" height="50" rx="6" fill="#12141A" stroke="#2A2D35" stroke-width="0.5"/>
+  <text x="50" y="782" fill="#94A3B8" font-size="10" font-weight="600">LEGEND</text>
+
+  <!-- Solid arrow -->
+  <line x1="110" y1="778" x2="160" y2="778" stroke="#F1F5F9" stroke-width="1.2" marker-end="url(#arrowSolid)"/>
+  <text x="168" y="782" fill="#94A3B8" font-size="9">Call / Request</text>
+
+  <!-- Dashed arrow -->
+  <line x1="280" y1="778" x2="330" y2="778" stroke="#94A3B8" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="338" y="782" fill="#94A3B8" font-size="9">Return / Response</text>
+
+  <!-- Self-call -->
+  <path d="M460,772 L485,772 L485,784 L466,784" fill="none" stroke="#918AFF" stroke-width="1.2" marker-end="url(#arrowSelf)"/>
+  <text x="495" y="782" fill="#94A3B8" font-size="9">Self-call</text>
+
+  <!-- Participant color indicators -->
+  <rect x="590" y="772" width="10" height="10" rx="2" fill="#6C63FF"/>
+  <text x="606" y="782" fill="#94A3B8" font-size="9">User</text>
+  <rect x="650" y="772" width="10" height="10" rx="2" fill="#918AFF"/>
+  <text x="666" y="782" fill="#94A3B8" font-size="9">UI</text>
+  <rect x="695" y="772" width="10" height="10" rx="2" fill="#FBBF24"/>
+  <text x="711" y="782" fill="#94A3B8" font-size="9">Context</text>
+  <rect x="765" y="772" width="10" height="10" rx="2" fill="#34D399"/>
+  <text x="781" y="782" fill="#94A3B8" font-size="9">Storage</text>
+  <rect x="835" y="772" width="10" height="10" rx="2" fill="#60A5FA"/>
+  <text x="851" y="782" fill="#94A3B8" font-size="9">Dashboard</text>
+
+  <!-- Footer -->
+  <text x="500" y="840" text-anchor="middle" fill="#4A5568" font-size="9">ProjectPulse — Task CRUD Operations</text>
+</svg>
