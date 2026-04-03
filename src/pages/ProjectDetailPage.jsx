@@ -15,12 +15,14 @@ import {
   AccessTime,
   CheckCircleOutline,
   Assignment,
+  Flag,
 } from '@mui/icons-material';
 import PageHeader from '../components/common/PageHeader';
 import StatCard from '../components/common/StatCard';
 import { useProjects } from '../context/ProjectContext';
 import { useTasks } from '../context/TaskContext';
 import { useUser } from '../context/UserContext';
+import { useMilestones } from '../context/MilestoneContext';
 import {
   computeProjectProgress,
   STATUS_DISPLAY,
@@ -48,6 +50,7 @@ export default function ProjectDetailPage() {
   const { getProject } = useProjects();
   const { tasks } = useTasks();
   const { getRole } = useUser();
+  const { getMilestonesByProject } = useMilestones();
 
   const project = getProject(id);
 
@@ -65,6 +68,11 @@ export default function ProjectDetailPage() {
   const totalHours = projectTasks.reduce((s, t) => s + t.loggedHours, 0);
 
   const role = project?.roleId ? getRole(project.roleId) : null;
+
+  const milestones = useMemo(
+    () => (project ? getMilestonesByProject(id) : []),
+    [getMilestonesByProject, id, project],
+  );
 
   if (!project) {
     return (
@@ -106,14 +114,28 @@ export default function ProjectDetailPage() {
           }
           subtitle={project.description}
           action={
-            <Chip
-              label={statusInfo.label}
-              sx={{
-                backgroundColor: statusInfo.color + '15',
-                color: statusInfo.color,
-                fontWeight: 600,
-              }}
-            />
+            <div className="flex items-center gap-2">
+              {project.priority && (
+                <Chip
+                  label={project.priority}
+                  size="small"
+                  sx={{
+                    backgroundColor: (PRIORITY_COLOR[project.priority] || '#94A3B8') + '15',
+                    color: PRIORITY_COLOR[project.priority] || '#94A3B8',
+                    fontWeight: 600,
+                    textTransform: 'capitalize',
+                  }}
+                />
+              )}
+              <Chip
+                label={statusInfo.label}
+                sx={{
+                  backgroundColor: statusInfo.color + '15',
+                  color: statusInfo.color,
+                  fontWeight: 600,
+                }}
+              />
+            </div>
           }
         />
       </motion.div>
@@ -234,6 +256,68 @@ export default function ProjectDetailPage() {
           })}
         </div>
       </motion.div>
+
+      {/* Milestones */}
+      {milestones.length > 0 && (
+        <motion.div variants={item} className="mt-6">
+          <h3 className="mb-4 text-sm font-semibold text-slate-300 flex items-center gap-2">
+            <Flag sx={{ fontSize: 16, color: '#FBBF24' }} />
+            Milestones
+          </h3>
+          <div className="space-y-3">
+            {milestones.map((ms) => {
+              const msTasks = tasks.filter((t) => ms.taskIds?.includes(t.id));
+              const msProgress = msTasks.length
+                ? Math.round((msTasks.filter((t) => t.status === 'done').length / msTasks.length) * 100)
+                : 0;
+              const msStatusInfo = STATUS_DISPLAY[ms.status] || STATUS_DISPLAY.on_track;
+              const isOverdue = ms.targetDate && new Date(ms.targetDate) < new Date() && msProgress < 100;
+
+              return (
+                <Card key={ms.id} sx={{ '&:hover': { borderColor: '#3A3D45' } }}>
+                  <CardContent sx={{ p: 3, '&:last-child': { pb: 3 } }}>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-slate-200">{ms.title}</span>
+                        <Chip
+                          label={msStatusInfo.label}
+                          size="small"
+                          sx={{
+                            backgroundColor: msStatusInfo.color + '15',
+                            color: msStatusInfo.color,
+                            fontSize: '0.6rem',
+                            height: 20,
+                          }}
+                        />
+                      </div>
+                      <span className={`text-xs ${isOverdue ? 'text-[#F87171]' : 'text-slate-500'}`}>
+                        {ms.targetDate ? relativeDate(ms.targetDate) : 'No date'}
+                      </span>
+                    </div>
+                    <div className="mb-1.5 flex items-center justify-between text-xs text-slate-500">
+                      <span>{msTasks.filter((t) => t.status === 'done').length}/{msTasks.length} tasks done</span>
+                      <span>{msProgress}%</span>
+                    </div>
+                    <LinearProgress
+                      variant="determinate"
+                      value={msProgress}
+                      sx={{
+                        height: 6,
+                        borderRadius: 3,
+                        backgroundColor: '#1E2128',
+                        '& .MuiLinearProgress-bar': {
+                          borderRadius: 3,
+                          backgroundColor: msProgress >= 100 ? '#34D399' : isOverdue ? '#F87171' : '#FBBF24',
+                        },
+                      }}
+                    />
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

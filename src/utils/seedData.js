@@ -51,6 +51,7 @@ const SEED_PROJECTS = [
     description: 'Full-stack e-commerce solution with payment integration and admin panel.',
     color: '#6C63FF',
     status: 'on_track',
+    priority: 'high',
     startDate: '2026-01-15',
     deadline: '2026-04-15',
     ownerId: 'user-1',
@@ -64,6 +65,7 @@ const SEED_PROJECTS = [
     description: 'UI/UX overhaul for the flagship mobile application across iOS and Android.',
     color: '#FBBF24',
     status: 'at_risk',
+    priority: 'high',
     startDate: '2026-02-01',
     deadline: '2026-04-01',
     ownerId: 'user-1',
@@ -77,6 +79,7 @@ const SEED_PROJECTS = [
     description: 'Migrate REST endpoints to v3 with improved auth, rate limiting and caching.',
     color: '#34D399',
     status: 'on_track',
+    priority: 'critical',
     startDate: '2026-01-20',
     deadline: '2026-03-28',
     ownerId: 'user-1',
@@ -90,6 +93,7 @@ const SEED_PROJECTS = [
     description: 'Build real-time analytics dashboard with charts, KPIs and export capabilities.',
     color: '#F87171',
     status: 'behind',
+    priority: 'medium',
     startDate: '2026-02-15',
     deadline: '2026-05-10',
     ownerId: 'user-1',
@@ -103,6 +107,7 @@ const SEED_PROJECTS = [
     description: 'Redesign the CI/CD pipeline for faster builds, better caching and parallel jobs.',
     color: '#60A5FA',
     status: 'on_track',
+    priority: 'medium',
     startDate: '2026-02-10',
     deadline: '2026-04-20',
     ownerId: 'user-1',
@@ -116,6 +121,7 @@ const SEED_PROJECTS = [
     description: 'Component library update with new tokens, accessibility improvements and docs.',
     color: '#C084FC',
     status: 'at_risk',
+    priority: 'low',
     startDate: '2026-02-20',
     deadline: '2026-04-30',
     ownerId: 'user-1',
@@ -189,4 +195,44 @@ const SEED_MILESTONES = [
   { id: 'ms-5', title: 'Analytics Dashboard MVP', projectId: 'proj-4', targetDate: '2026-05-01', status: 'behind', taskIds: ['task-16', 'task-17', 'task-18'] },
 ];
 
-export { SEED_ROLES, SEED_PROFILE, SEED_PROJECTS, SEED_TASKS, SEED_TIME_ENTRIES, SEED_MILESTONES };
+const SEED_LOGS = [
+  {
+    id: 'log-1',
+    date: '2026-03-19',
+    content: '@API Migration: Worked on JWT validation and refresh token flow for 2h\n@E-Commerce: Built product card UI component\n@API Migration: Reviewed auth module PR and added comments\n!Need to follow up on the role-based guards PR tomorrow',
+    parsedItems: [
+      { text: 'Worked on JWT validation and refresh token flow for 2h', projectId: 'proj-3', projectName: 'API Migration v3', taskId: null, hoursSpent: 2, tags: [] },
+      { text: 'Built product card UI component', projectId: 'proj-1', projectName: 'E-Commerce Platform', taskId: null, hoursSpent: null, tags: [] },
+      { text: 'Reviewed auth module PR and added comments', projectId: 'proj-3', projectName: 'API Migration v3', taskId: null, hoursSpent: null, tags: [] },
+    ],
+    priorityNotes: 'Need to follow up on the role-based guards PR tomorrow',
+    createdAt: '2026-03-19T18:00:00Z',
+  },
+  {
+    id: 'log-2',
+    date: '2026-03-18',
+    content: '@CI/CD Pipeline: Debugged CI pipeline failures on staging for 3h\n@Mobile App: Sprint planning meeting 1h\n- Reviewed PRs from team\n!CI staging still flaky — need to check caching config',
+    parsedItems: [
+      { text: 'Debugged CI pipeline failures on staging for 3h', projectId: 'proj-5', projectName: 'CI/CD Pipeline Revamp', taskId: null, hoursSpent: 3, tags: [] },
+      { text: 'Sprint planning meeting 1h', projectId: 'proj-2', projectName: 'Mobile App Redesign', taskId: null, hoursSpent: 1, tags: [] },
+      { text: 'Reviewed PRs from team', projectId: null, projectName: null, taskId: null, hoursSpent: null, tags: [] },
+    ],
+    priorityNotes: 'CI staging still flaky — need to check caching config',
+    createdAt: '2026-03-18T18:00:00Z',
+  },
+  {
+    id: 'log-3',
+    date: '2026-03-17',
+    content: '@Dashboard Analytics: Defined KPI data models 2h\n@Design System: Built initial button component variants 2h\n- Team standup\n- Code review for auth module',
+    parsedItems: [
+      { text: 'Defined KPI data models 2h', projectId: 'proj-4', projectName: 'Dashboard Analytics', taskId: null, hoursSpent: 2, tags: [] },
+      { text: 'Built initial button component variants 2h', projectId: 'proj-6', projectName: 'Design System v2', taskId: null, hoursSpent: 2, tags: [] },
+      { text: 'Team standup', projectId: null, projectName: null, taskId: null, hoursSpent: null, tags: [] },
+      { text: 'Code review for auth module', projectId: null, projectName: null, taskId: null, hoursSpent: null, tags: [] },
+    ],
+    priorityNotes: '',
+    createdAt: '2026-03-17T18:00:00Z',
+  },
+];
+
+export { SEED_ROLES, SEED_PROFILE, SEED_PROJECTS, SEED_TASKS, SEED_TIME_ENTRIES, SEED_MILESTONES, SEED_LOGS };

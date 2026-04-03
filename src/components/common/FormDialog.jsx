@@ -48,7 +48,7 @@ export default function FormDialog({
           <Close fontSize="small" />
         </IconButton>
       </DialogTitle>
-      <DialogContent sx={{ pt: 2 }}>{children}</DialogContent>
+      <DialogContent sx={{ pt: '20px !important', pb: 1, overflowY: 'auto' }}>{children}</DialogContent>
       <DialogActions sx={{ px: 3, pb: 2.5 }}>
         <Button onClick={onClose} sx={{ color: '#94A3B8' }}>
           Cancel

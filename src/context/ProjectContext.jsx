@@ -45,6 +45,7 @@ export function ProjectProvider({ children }) {
       ownerId: 'user-1',
       memberIds: ['user-1'],
       status: 'active',
+      priority: 'medium',
       roleId: null,
       ...data,
     };

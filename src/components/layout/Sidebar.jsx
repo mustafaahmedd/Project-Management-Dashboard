@@ -12,6 +12,7 @@ import {
   Settings as SettingsIcon,
   Person as ProfileIcon,
   Logout as LogoutIcon,
+  EditNote as DailyLogIcon,
   ExpandMore,
   ExpandLess,
   Circle,
@@ -28,6 +29,7 @@ const topNavItems = [
 
 const bottomNavItems = [
   { label: 'Tasks', path: '/tasks', icon: TasksIcon },
+  { label: 'Daily Log', path: '/daily-log', icon: DailyLogIcon },
   { label: 'Calendar', path: '/calendar', icon: CalendarIcon },
   { label: 'Time Tracking', path: '/time-tracking', icon: TimeIcon },
   { label: 'Milestones', path: '/milestones', icon: MilestonesIcon },
@@ -76,15 +78,15 @@ function CompanySection({ company, projects, expandedCompanies, toggleCompany, l
     <div>
       <button
         onClick={() => toggleCompany(company)}
-        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-slate-400 transition-colors hover:bg-[#181B22] hover:text-slate-300"
+        className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-[13px] font-semibold text-slate-300 transition-colors hover:bg-[#181B22] hover:text-slate-200"
       >
-        <Business sx={{ fontSize: 14 }} className="text-slate-600" />
+        <Business sx={{ fontSize: 16 }} className="text-slate-500" />
         <span className="flex-1 truncate text-left">{company}</span>
-        <span className="text-[10px] text-slate-600">{projects.length}</span>
+        <span className="text-[11px] text-slate-500 font-medium">{projects.length}</span>
         {isExpanded ? (
-          <ExpandLess sx={{ fontSize: 14 }} className="text-slate-600" />
+          <ExpandLess sx={{ fontSize: 16 }} className="text-slate-500" />
         ) : (
-          <ExpandMore sx={{ fontSize: 14 }} className="text-slate-600" />
+          <ExpandMore sx={{ fontSize: 16 }} className="text-slate-500" />
         )}
       </button>
 
@@ -97,7 +99,7 @@ function CompanySection({ company, projects, expandedCompanies, toggleCompany, l
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="ml-3 space-y-0.5 border-l border-[#2A2D35] pl-3 pt-1 pb-1">
+            <div className="ml-3 space-y-0.5 border-l border-[#2A2D35] pl-3 pt-1.5 pb-1.5">
               {projects.map((project) => {
                 const isActive = location.pathname === `/projects/${project.id}`;
                 return (
@@ -105,13 +107,13 @@ function CompanySection({ company, projects, expandedCompanies, toggleCompany, l
                     key={project.id}
                     whileHover={{ x: 2 }}
                     onClick={() => navigate(`/projects/${project.id}`)}
-                    className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-xs transition-colors ${
+                    className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-[12.5px] transition-colors ${
                       isActive
                         ? 'bg-[#6C63FF]/10 text-[#918AFF]'
-                        : 'text-slate-500 hover:bg-[#181B22] hover:text-slate-300'
+                        : 'text-slate-400 hover:bg-[#181B22] hover:text-slate-200'
                     }`}
                   >
-                    <Circle sx={{ fontSize: 6, color: project.color }} />
+                    <Circle sx={{ fontSize: 7, color: project.color }} />
                     <span className="truncate">{project.name}</span>
                   </motion.button>
                 );
@@ -129,9 +131,20 @@ export default function Sidebar({ onClose }) {
   const { projects } = useProjects();
   const { profile, roles } = useUser();
 
-  const [expandedCompanies, setExpandedCompanies] = useState(
-    () => loadState('sidebar_state', {}),
-  );
+  const [expandedCompanies, setExpandedCompanies] = useState(() => {
+    const saved = loadState('sidebar_state', null);
+    if (saved !== null) return saved;
+    // Auto-expand all companies by default
+    const defaults = {};
+    const roleMap = {};
+    roles.forEach((r) => { roleMap[r.id] = r; });
+    projects.forEach((p) => {
+      const role = p.roleId ? roleMap[p.roleId] : null;
+      const company = role ? role.company : 'Unassigned';
+      defaults[company] = true;
+    });
+    return defaults;
+  });
 
   const toggleCompany = (company) => {
     setExpandedCompanies((prev) => {

@@ -287,6 +287,68 @@ Settings
 
 ---
 
+### Phase 8: Daily Log + Enhanced Milestone Tracking
+
+**Problem:** At the end of a workday, you want to quickly dump everything you did — without creating individual tasks, setting deadlines, or assigning projects one by one. You just want to type "aj yeh kia" and move on.
+
+**8a. Daily Log / Work Journal**
+
+New data model — `LogEntry`:
+```
+{
+  id: string,
+  date: string (YYYY-MM-DD),
+  content: string,           // Free-text dump of what was done
+  parsedItems: [             // Extracted work items (manual or AI-assisted)
+    {
+      text: string,          // Individual work item
+      projectId: string | null,
+      taskId: string | null, // Link to existing task if matched
+      hoursSpent: number | null,
+      tags: string[],
+    }
+  ],
+  priorityNotes: string,     // Any priority notes / reminders for next day
+  createdAt: ISO 8601
+}
+```
+
+**Two modes:**
+1. **Quick mode (default):** Single text box. Type everything in natural language. Optionally tag projects inline (e.g., `@E-Commerce: built cart page`). System parses `@ProjectName:` prefixes to auto-assign.
+2. **Structured mode:** After quick entry, review parsed items in a table. Manually assign projects, link to tasks, add hours.
+
+**UI Location:**
+- **Dashboard:** "Log Today's Work" button next to "Quick Add Task"
+- **New page:** `/daily-log` — shows calendar of past logs, click any day to view/edit
+- **Sidebar:** Add "Daily Log" under Tools section
+
+**Files to create:**
+- `src/context/LogContext.jsx` — LogEntry CRUD + localStorage persistence
+- `src/pages/DailyLogPage.jsx` — Full daily log page with calendar + entry view
+- `src/utils/logParser.js` — Parse `@ProjectName:` prefixes from free text
+
+**Files to modify:**
+- `src/pages/DashboardPage.jsx` — Add "Log Today's Work" button
+- `src/components/layout/Sidebar.jsx` — Add Daily Log nav item
+- `src/App.jsx` — Add `/daily-log` route
+- `src/utils/seedData.js` — Add SEED_LOGS
+
+---
+
+**8b. Enhanced Milestone Tracking**
+
+Current milestones show a basic timeline. Enhance with:
+- **Progress bar** on each milestone card (already exists but could be more prominent)
+- **In-project milestone view:** On ProjectDetailPage, show milestones specific to that project with visual progress
+- **Milestone dependency:** Optional "blocked by" field linking milestones
+- **Due date warnings:** Color-code milestones approaching deadline with low progress
+
+**Files to modify:**
+- `src/pages/ProjectDetailPage.jsx` — Add milestones section with progress bars
+- `src/pages/MilestonesPage.jsx` — Enhanced UI with better progress visualization
+
+---
+
 ## Implementation Order & Dependencies
 
 ```

@@ -22,9 +22,30 @@ import ConfirmDialog from '../components/common/ConfirmDialog';
 import { useProjects } from '../context/ProjectContext';
 import { useTasks } from '../context/TaskContext';
 import { useUser } from '../context/UserContext';
-import { computeProjectProgress, STATUS_DISPLAY, formatDate } from '../utils/format';
+import { computeProjectProgress, STATUS_DISPLAY, PRIORITY_COLOR, formatDate } from '../utils/format';
 
-const PROJECT_COLORS = ['#6C63FF', '#34D399', '#FBBF24', '#F87171', '#60A5FA', '#C084FC', '#F472B6', '#FB923C'];
+const PROJECT_COLORS = [
+  '#6C63FF', '#34D399', '#FBBF24', '#F87171', '#60A5FA', '#C084FC', '#F472B6', '#FB923C',
+  '#14B8A6', '#A78BFA', '#E879F9', '#F59E0B', '#EF4444', '#22D3EE', '#84CC16', '#EC4899',
+];
+
+const PROJECT_STATUSES = [
+  { value: 'on_track', label: 'On Track' },
+  { value: 'at_risk', label: 'At Risk' },
+  { value: 'behind', label: 'Behind' },
+  { value: 'planning', label: 'Planning' },
+  { value: 'active', label: 'Active' },
+  { value: 'paused', label: 'Paused' },
+  { value: 'completed', label: 'Completed' },
+  { value: 'archived', label: 'Archived' },
+];
+
+const PROJECT_PRIORITIES = [
+  { value: 'critical', label: 'Critical', color: '#EF4444' },
+  { value: 'high', label: 'High', color: '#F87171' },
+  { value: 'medium', label: 'Medium', color: '#FBBF24' },
+  { value: 'low', label: 'Low', color: '#34D399' },
+];
 
 const container = {
   hidden: { opacity: 0 },
@@ -41,6 +62,7 @@ const EMPTY_FORM = {
   description: '',
   color: '#6C63FF',
   status: 'on_track',
+  priority: 'medium',
   startDate: '',
   deadline: '',
   roleId: '',
@@ -105,6 +127,7 @@ export default function ProjectsPage() {
       description: project.description || '',
       color: project.color,
       status: project.status,
+      priority: project.priority || 'medium',
       startDate: project.startDate || '',
       deadline: project.deadline || '',
       roleId: project.roleId || '',
@@ -153,12 +176,12 @@ export default function ProjectsPage() {
               size="small"
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              sx={{ minWidth: 120, '& .MuiOutlinedInput-root': { borderColor: '#2A2D35' } }}
+              sx={{ minWidth: 130, '& .MuiOutlinedInput-root': { borderColor: '#2A2D35' } }}
             >
               <MenuItem value="all">All Status</MenuItem>
-              <MenuItem value="on_track">On Track</MenuItem>
-              <MenuItem value="at_risk">At Risk</MenuItem>
-              <MenuItem value="behind">Behind</MenuItem>
+              {PROJECT_STATUSES.map((s) => (
+                <MenuItem key={s.value} value={s.value}>{s.label}</MenuItem>
+              ))}
             </TextField>
             <TextField
               select
@@ -266,9 +289,25 @@ export default function ProjectsPage() {
                       </div>
                     </div>
 
-                    <p className="mb-4 text-xs leading-relaxed text-slate-400 line-clamp-2">
+                    <p className="mb-3 text-xs leading-relaxed text-slate-400 line-clamp-2">
                       {project.description}
                     </p>
+
+                    {project.priority && (
+                      <div className="mb-3">
+                        <Chip
+                          label={project.priority}
+                          size="small"
+                          sx={{
+                            backgroundColor: (PRIORITY_COLOR[project.priority] || '#94A3B8') + '15',
+                            color: PRIORITY_COLOR[project.priority] || '#94A3B8',
+                            fontSize: '0.6rem',
+                            height: 20,
+                            textTransform: 'capitalize',
+                          }}
+                        />
+                      </div>
+                    )}
 
                     <LinearProgress
                       variant="determinate"
@@ -387,20 +426,38 @@ export default function ProjectsPage() {
               onChange={set('deadline')}
             />
           </div>
-          <TextField
-            select
-            label="Status"
-            fullWidth
-            value={form.status}
-            onChange={set('status')}
-          >
-            <MenuItem value="on_track">On Track</MenuItem>
-            <MenuItem value="at_risk">At Risk</MenuItem>
-            <MenuItem value="behind">Behind</MenuItem>
-          </TextField>
+          <div className="grid grid-cols-2 gap-4">
+            <TextField
+              select
+              label="Status"
+              fullWidth
+              value={form.status}
+              onChange={set('status')}
+            >
+              {PROJECT_STATUSES.map((s) => (
+                <MenuItem key={s.value} value={s.value}>{s.label}</MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              select
+              label="Priority"
+              fullWidth
+              value={form.priority}
+              onChange={set('priority')}
+            >
+              {PROJECT_PRIORITIES.map((p) => (
+                <MenuItem key={p.value} value={p.value}>
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full" style={{ backgroundColor: p.color }} />
+                    {p.label}
+                  </div>
+                </MenuItem>
+              ))}
+            </TextField>
+          </div>
           <div>
             <p className="mb-2 text-xs text-slate-400">Color</p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {PROJECT_COLORS.map((c) => (
                 <button
                   key={c}

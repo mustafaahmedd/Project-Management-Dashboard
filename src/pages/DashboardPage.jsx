@@ -8,6 +8,7 @@ import {
   TrendingUp,
   Assignment,
   Add,
+  EditNote,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/common/PageHeader';
@@ -116,9 +117,20 @@ export default function DashboardPage() {
         title="Dashboard"
         subtitle={`Welcome back, ${profile?.name?.split(' ')[0] || 'there'} — here's what's happening across your projects.`}
         action={
-          <Button variant="contained" startIcon={<Add />} size="small" onClick={() => setQuickAddOpen(true)}>
-            Quick Add Task
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outlined"
+              startIcon={<EditNote />}
+              size="small"
+              onClick={() => navigate('/daily-log')}
+              sx={{ borderColor: '#34D39950', color: '#34D399', '&:hover': { borderColor: '#34D399', bgcolor: '#34D39910' } }}
+            >
+              Log Today's Work
+            </Button>
+            <Button variant="contained" startIcon={<Add />} size="small" onClick={() => setQuickAddOpen(true)}>
+              Quick Add Task
+            </Button>
+          </div>
         }
       />
 
