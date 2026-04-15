@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "projectpulse": {
+      "command": "node",
+      "args": [
+        "/Users/mustafaahmed/Mustafa/Project Management Dashboard/mcp-server/server.js"
+      ]
+    }
+  }
+}

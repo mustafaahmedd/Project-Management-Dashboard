@@ -13,6 +13,9 @@ import {
   Person as ProfileIcon,
   Logout as LogoutIcon,
   EditNote as DailyLogIcon,
+  Lightbulb as IdeasIcon,
+  AttachMoney as PaymentsIcon,
+  Receipt as InvoiceIcon,
   ExpandMore,
   ExpandLess,
   Circle,
@@ -30,9 +33,12 @@ const topNavItems = [
 const bottomNavItems = [
   { label: 'Tasks', path: '/tasks', icon: TasksIcon },
   { label: 'Daily Log', path: '/daily-log', icon: DailyLogIcon },
+  { label: 'Ideas', path: '/ideas', icon: IdeasIcon },
   { label: 'Calendar', path: '/calendar', icon: CalendarIcon },
   { label: 'Time Tracking', path: '/time-tracking', icon: TimeIcon },
   { label: 'Milestones', path: '/milestones', icon: MilestonesIcon },
+  { label: 'Payments', path: '/payments', icon: PaymentsIcon },
+  { label: 'Invoice', path: '/invoice', icon: InvoiceIcon },
   { label: 'Analytics', path: '/analytics', icon: AnalyticsIcon },
 ];
 

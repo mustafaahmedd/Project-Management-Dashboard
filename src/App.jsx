@@ -7,6 +7,8 @@ import { TaskProvider } from './context/TaskContext';
 import { TimeProvider } from './context/TimeContext';
 import { MilestoneProvider } from './context/MilestoneContext';
 import { LogProvider } from './context/LogContext';
+import { IdeaProvider } from './context/IdeaContext';
+import { PaymentProvider } from './context/PaymentContext';
 import AppLayout from './components/layout/AppLayout';
 import DashboardPage from './pages/DashboardPage';
 import ProjectsPage from './pages/ProjectsPage';
@@ -19,6 +21,9 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
 import DailyLogPage from './pages/DailyLogPage';
+import IdeasPage from './pages/IdeasPage';
+import PaymentsPage from './pages/PaymentsPage';
+import InvoicePage from './pages/InvoicePage';
 
 export default function App() {
   return (
@@ -30,23 +35,30 @@ export default function App() {
             <TimeProvider>
               <MilestoneProvider>
                 <LogProvider>
-                  <BrowserRouter>
-                    <Routes>
-                      <Route element={<AppLayout />}>
-                        <Route path="/" element={<DashboardPage />} />
-                        <Route path="/projects" element={<ProjectsPage />} />
-                        <Route path="/projects/:id" element={<ProjectDetailPage />} />
-                        <Route path="/tasks" element={<TasksPage />} />
-                        <Route path="/calendar" element={<CalendarPage />} />
-                        <Route path="/time-tracking" element={<TimeTrackingPage />} />
-                        <Route path="/milestones" element={<MilestonesPage />} />
-                        <Route path="/analytics" element={<AnalyticsPage />} />
-                        <Route path="/daily-log" element={<DailyLogPage />} />
-                        <Route path="/profile" element={<ProfilePage />} />
-                        <Route path="/settings" element={<SettingsPage />} />
-                      </Route>
-                    </Routes>
-                  </BrowserRouter>
+                <IdeaProvider>
+                  <PaymentProvider>
+                    <BrowserRouter>
+                      <Routes>
+                        <Route element={<AppLayout />}>
+                          <Route path="/" element={<DashboardPage />} />
+                          <Route path="/projects" element={<ProjectsPage />} />
+                          <Route path="/projects/:id" element={<ProjectDetailPage />} />
+                          <Route path="/tasks" element={<TasksPage />} />
+                          <Route path="/calendar" element={<CalendarPage />} />
+                          <Route path="/time-tracking" element={<TimeTrackingPage />} />
+                          <Route path="/milestones" element={<MilestonesPage />} />
+                          <Route path="/analytics" element={<AnalyticsPage />} />
+                          <Route path="/daily-log" element={<DailyLogPage />} />
+                          <Route path="/ideas" element={<IdeasPage />} />
+                          <Route path="/payments" element={<PaymentsPage />} />
+                          <Route path="/invoice" element={<InvoicePage />} />
+                          <Route path="/profile" element={<ProfilePage />} />
+                          <Route path="/settings" element={<SettingsPage />} />
+                        </Route>
+                      </Routes>
+                    </BrowserRouter>
+                  </PaymentProvider>
+                </IdeaProvider>
                 </LogProvider>
               </MilestoneProvider>
             </TimeProvider>
